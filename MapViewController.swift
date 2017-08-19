@@ -11,13 +11,15 @@ import UIKit
 
 class MapViewController: UIViewController {
     
-    // Declare variables
+    // IBOutlets for pauseButton and timerLabel
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
-    var counter = 0.0
-    var seconds = 60
+    
+    // Declare timer variables
     var timer = Timer()
-    let date = Date()
+    var startTime = 0.0
+    var currentTime = 0.0
+    var timePassed = 0.0
     var timerActive = false
     
     // Load view
@@ -27,26 +29,20 @@ class MapViewController: UIViewController {
         
         // Start the timer
         activateTimer()
-        timerActive = true
     }
     
     // Activate the timer
     func activateTimer() {
-        self.timer = Timer(fireAt: date,
-                           interval: 0.01,
-                           target: self,
-                           selector: #selector(updateTimer(timer:)),
-                           userInfo: nil,
-                           repeats: true)
-        
-        RunLoop.main.add(self.timer, forMode: RunLoopMode.commonModes)
-        self.timer.fire()
+        timer.invalidate()
+        startTime = Date().timeIntervalSinceReferenceDate - timePassed
+        timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        timerActive = true
     }
     
     // Update the timer
-    func updateTimer(timer: Timer!) {
-        seconds += 1
-        timerLabel.text = timeToString(time: TimeInterval(seconds))
+    func updateTimer() {
+        currentTime = Date().timeIntervalSinceReferenceDate - startTime
+        timerLabel.text = timeToString(time: TimeInterval(currentTime))
     }
     
     // Convert timer from Int to String
@@ -60,9 +56,13 @@ class MapViewController: UIViewController {
     // Reset the timer
     @IBAction func clearTimer(_ sender: UIButton) {
         timer.invalidate()
-        seconds = 0
-        timerLabel.text = timeToString(time: TimeInterval(seconds))
-        seconds = 60
+        startTime = 0.0
+        currentTime = 0.0
+        timePassed = 0.0
+        pauseButton.setTitle("Resume", for: .normal)
+        timerActive = false
+        
+        timerLabel.text = timeToString(time: TimeInterval(currentTime))
     }
     
     
@@ -70,6 +70,7 @@ class MapViewController: UIViewController {
     @IBAction func stopTimer(_ sender: UIButton) {
         if (timerActive) {
             timer.invalidate()
+            timePassed = Date().timeIntervalSinceReferenceDate - startTime
             pauseButton.setTitle("Resume", for: .normal)
             timerActive = false
         }
