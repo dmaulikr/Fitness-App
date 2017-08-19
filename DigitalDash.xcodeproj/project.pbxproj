@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A268B1841F47B23100F0C521 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1831F47B23100F0C521 /* CircleView.swift */; };
+		A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1851F47C52B00F0C521 /* MapViewController.swift */; };
 		A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1511F4753660079FFF0 /* AppDelegate.swift */; };
-		A2F4D1541F4753660079FFF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1531F4753660079FFF0 /* ViewController.swift */; };
+		A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1531F4753660079FFF0 /* MainViewController.swift */; };
 		A2F4D1571F4753660079FFF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F4D1551F4753660079FFF0 /* Main.storyboard */; };
 		A2F4D15A1F4753660079FFF0 /* DigitalDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1581F4753660079FFF0 /* DigitalDash.xcdatamodeld */; };
 		A2F4D15C1F4753660079FFF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F4D15B1F4753660079FFF0 /* Assets.xcassets */; };
@@ -37,9 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A268B1831F47B23100F0C521 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		A268B1851F47C52B00F0C521 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A2F4D14E1F4753660079FFF0 /* DigitalDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F4D1511F4753660079FFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A2F4D1531F4753660079FFF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = DigitalDash/ViewController.swift; sourceTree = "<group>"; };
+		A2F4D1531F4753660079FFF0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = DigitalDash/MainViewController.swift; sourceTree = "<group>"; };
 		A2F4D1561F4753660079FFF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2F4D1591F4753660079FFF0 /* DigitalDash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DigitalDash.xcdatamodel; sourceTree = "<group>"; };
 		A2F4D15B1F4753660079FFF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 		A2F4D1831F4753830079FFF0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A268B1831F47B23100F0C521 /* CircleView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -152,7 +157,8 @@
 		A2F4D1841F4753890079FFF0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A2F4D1531F4753660079FFF0 /* ViewController.swift */,
+				A2F4D1531F4753660079FFF0 /* MainViewController.swift */,
+				A268B1851F47C52B00F0C521 /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -305,8 +311,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2F4D1541F4753660079FFF0 /* ViewController.swift in Sources */,
+				A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */,
 				A2F4D15A1F4753660079FFF0 /* DigitalDash.xcdatamodeld in Sources */,
+				A268B1841F47B23100F0C521 /* CircleView.swift in Sources */,
+				A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */,
 				A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +566,7 @@
 				A2F4D17B1F4753660079FFF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A2F4D17C1F4753660079FFF0 /* Build configuration list for PBXNativeTarget "DigitalDashTests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +575,7 @@
 				A2F4D17E1F4753660079FFF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A2F4D17F1F4753660079FFF0 /* Build configuration list for PBXNativeTarget "DigitalDashUITests" */ = {
 			isa = XCConfigurationList;
@@ -574,6 +584,7 @@
 				A2F4D1811F4753660079FFF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
