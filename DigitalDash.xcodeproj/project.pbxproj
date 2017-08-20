@@ -11,7 +11,7 @@
 		A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1851F47C52B00F0C521 /* MapViewController.swift */; };
 		A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1891F48FA5600F0C521 /* CircleLabelView.swift */; };
 		A268B18C1F48FAF000F0C521 /* appLogoMain.png in Resources */ = {isa = PBXBuildFile; fileRef = A268B18B1F48FAF000F0C521 /* appLogoMain.png */; };
-		A268B1901F48FFC800F0C521 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = A268B18F1F48FFC800F0C521 /* title.png */; };
+		A268B1961F4951E300F0C521 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = A268B1951F4951E300F0C521 /* title.png */; };
 		A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1511F4753660079FFF0 /* AppDelegate.swift */; };
 		A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1531F4753660079FFF0 /* MainViewController.swift */; };
 		A2F4D1571F4753660079FFF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F4D1551F4753660079FFF0 /* Main.storyboard */; };
@@ -46,7 +46,7 @@
 		A268B1851F47C52B00F0C521 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A268B1891F48FA5600F0C521 /* CircleLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabelView.swift; sourceTree = "<group>"; };
 		A268B18B1F48FAF000F0C521 /* appLogoMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appLogoMain.png; sourceTree = "<group>"; };
-		A268B18F1F48FFC800F0C521 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		A268B1951F4951E300F0C521 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		A2F4D14E1F4753660079FFF0 /* DigitalDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F4D1511F4753660079FFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F4D1531F4753660079FFF0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = DigitalDash/MainViewController.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 				A2F4D1861F47565B0079FFF0 /* appLogo.png */,
 				A2F4D1881F4757E90079FFF0 /* appLogo1.png */,
 				A268B18B1F48FAF000F0C521 /* appLogoMain.png */,
-				A268B18F1F48FFC800F0C521 /* title.png */,
+				A268B1951F4951E300F0C521 /* title.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 			files = (
 				A2F4D1891F4757E90079FFF0 /* appLogo1.png in Resources */,
 				A268B18C1F48FAF000F0C521 /* appLogoMain.png in Resources */,
-				A268B1901F48FFC800F0C521 /* title.png in Resources */,
+				A268B1961F4951E300F0C521 /* title.png in Resources */,
 				A2F4D1871F47565B0079FFF0 /* appLogo.png in Resources */,
 				A2F4D15F1F4753660079FFF0 /* LaunchScreen.storyboard in Resources */,
 				A2F4D15C1F4753660079FFF0 /* Assets.xcassets in Resources */,
