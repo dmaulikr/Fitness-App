@@ -118,6 +118,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1p-Cp-0Hz" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="101" y="91" width="172" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.67444700000000002" green="0.67462551589999997" blue="0.67034429309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTL-3x-DG2" userLabel="Stop Button" customClass="CircleButtonView" customModule="DigitalDash" customModuleProvider="target">
                                 <rect key="frame" x="137" y="456" width="100" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,19 +138,25 @@
                                     <action selector="stopTimer:" destination="Vfh-gV-mCo" eventType="touchUpInside" id="367-Vk-YPi"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1p-Cp-0Hz" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="101" y="91" width="172" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIP-hD-z5x">
+                                <rect key="frame" x="150" y="403" width="75" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.67444700000000002" green="0.67462551589999997" blue="0.67034429309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" red="0.67444700002670288" green="0.67462551593780518" blue="0.67034429311752319" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Pause">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pauseButton:" destination="Vfh-gV-mCo" eventType="touchUpInside" id="laF-yK-sww"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="R1p-Cp-0Hz" id="WsZ-vy-Mj1"/>
                         <outlet property="endTimeLabel" destination="t6J-l3-3Um" id="fOO-lv-i61"/>
+                        <outlet property="pauseText" destination="cIP-hD-z5x" id="1Hb-0s-bXG"/>
                         <outlet property="startTimeLabel" destination="W9I-Hf-eub" id="pQK-SZ-xdc"/>
                         <outlet property="timerLabel" destination="32W-WH-MW3" id="oRb-Pm-NDo"/>
                     </connections>

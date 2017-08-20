@@ -12,6 +12,7 @@
 		A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1891F48FA5600F0C521 /* CircleLabelView.swift */; };
 		A268B18C1F48FAF000F0C521 /* appLogoMain.png in Resources */ = {isa = PBXBuildFile; fileRef = A268B18B1F48FAF000F0C521 /* appLogoMain.png */; };
 		A268B1961F4951E300F0C521 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = A268B1951F4951E300F0C521 /* title.png */; };
+		A268B19A1F4A285200F0C521 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1991F4A285200F0C521 /* CoreDataModel.swift */; };
 		A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1511F4753660079FFF0 /* AppDelegate.swift */; };
 		A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1531F4753660079FFF0 /* MainViewController.swift */; };
 		A2F4D1571F4753660079FFF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F4D1551F4753660079FFF0 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		A268B1891F48FA5600F0C521 /* CircleLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabelView.swift; sourceTree = "<group>"; };
 		A268B18B1F48FAF000F0C521 /* appLogoMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appLogoMain.png; sourceTree = "<group>"; };
 		A268B1951F4951E300F0C521 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		A268B1991F4A285200F0C521 /* CoreDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		A2F4D14E1F4753660079FFF0 /* DigitalDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F4D1511F4753660079FFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F4D1531F4753660079FFF0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = DigitalDash/MainViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +124,6 @@
 				A2F4D15B1F4753660079FFF0 /* Assets.xcassets */,
 				A2F4D15D1F4753660079FFF0 /* LaunchScreen.storyboard */,
 				A2F4D1601F4753660079FFF0 /* Info.plist */,
-				A2F4D1581F4753660079FFF0 /* DigitalDash.xcdatamodeld */,
 			);
 			path = DigitalDash;
 			sourceTree = "<group>";
@@ -148,6 +149,8 @@
 		A2F4D1821F4753760079FFF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A2F4D1581F4753660079FFF0 /* DigitalDash.xcdatamodeld */,
+				A268B1991F4A285200F0C521 /* CoreDataModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				A2F4D15A1F4753660079FFF0 /* DigitalDash.xcdatamodeld in Sources */,
 				A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */,
 				A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */,
+				A268B19A1F4A285200F0C521 /* CoreDataModel.swift in Sources */,
 				A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */,
 				A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */,
 			);
@@ -607,7 +611,8 @@
 				A2F4D1591F4753660079FFF0 /* DigitalDash.xcdatamodel */,
 			);
 			currentVersion = A2F4D1591F4753660079FFF0 /* DigitalDash.xcdatamodel */;
-			path = DigitalDash.xcdatamodeld;
+			name = DigitalDash.xcdatamodeld;
+			path = DigitalDash/DigitalDash.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

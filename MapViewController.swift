@@ -16,6 +16,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var pauseText: UIButton!
     
     // Declare timer variables
     var timer = Timer()
@@ -93,6 +94,19 @@ class MapViewController: UIViewController {
         timer.invalidate()
         timePassed = Date().timeIntervalSinceReferenceDate - startTime
         timerActive = false
+    }
+    @IBAction func pauseButton(_ sender: UIButton) {
+        if (timerActive) {
+            timer.invalidate()
+            timePassed = Date().timeIntervalSinceReferenceDate - startTime
+            pauseText.setTitle("Play", for: .normal)
+            timerActive = false
+        }
+        else {
+            activateTimer()
+            pauseText.setTitle("Pause", for: .normal)
+            timerActive = true
+        }
     }
     
 
