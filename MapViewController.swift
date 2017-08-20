@@ -12,8 +12,10 @@ import UIKit
 class MapViewController: UIViewController {
     
     // IBOutlets for pauseButton and timerLabel
-    @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     // Declare timer variables
     var timer = Timer()
@@ -29,10 +31,26 @@ class MapViewController: UIViewController {
         
         // Start the timer
         activateTimer()
+        
+        // Show Date
+        let currentDate = DateFormatter()
+        currentDate.dateStyle = .long
+        
+        let date = Date()
+        let dateToString = currentDate.string(from: date)
+        dateLabel.text = dateToString
     }
     
+ 
     // Activate the timer
     func activateTimer() {
+        let dateTimeStart = DateFormatter()
+        dateTimeStart.timeStyle = .short
+        dateTimeStart.doesRelativeDateFormatting = true
+        
+        let date = Date()
+        let dateToString = dateTimeStart.string(from: date)
+        startTimeLabel.text = dateToString
         timer.invalidate()
         startTime = Date().timeIntervalSinceReferenceDate - timePassed
         timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -52,33 +70,29 @@ class MapViewController: UIViewController {
         let seconds = Int(time) % 60
         return String(format:"%02d:%02d:%02d", hours, minutes, seconds)
     }
-    
+
     // Reset the timer
-    @IBAction func clearTimer(_ sender: UIButton) {
+    func clearTimer() {
         timer.invalidate()
         startTime = 0.0
         currentTime = 0.0
         timePassed = 0.0
-        pauseButton.setTitle("Resume", for: .normal)
         timerActive = false
-        
-        timerLabel.text = timeToString(time: TimeInterval(currentTime))
     }
     
     
     // Stop the timer
     @IBAction func stopTimer(_ sender: UIButton) {
-        if (timerActive) {
-            timer.invalidate()
-            timePassed = Date().timeIntervalSinceReferenceDate - startTime
-            pauseButton.setTitle("Resume", for: .normal)
-            timerActive = false
-        }
-        else {
-            activateTimer()
-            pauseButton.setTitle("Pause", for: .normal)
-            timerActive = true
-        }
+        let dateTimeEnd = DateFormatter()
+        dateTimeEnd.timeStyle = .short
+        dateTimeEnd.doesRelativeDateFormatting = true
+        
+        let date = Date()
+        let dateToString = dateTimeEnd.string(from: date)
+        endTimeLabel.text = dateToString
+        timer.invalidate()
+        timePassed = Date().timeIntervalSinceReferenceDate - startTime
+        timerActive = false
     }
     
 
