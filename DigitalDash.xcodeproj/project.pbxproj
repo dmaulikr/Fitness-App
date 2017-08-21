@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A237AE4C1F4A743000BC54F5 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */; };
 		A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1831F47B23100F0C521 /* CircleButtonView.swift */; };
 		A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1851F47C52B00F0C521 /* MapViewController.swift */; };
 		A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1891F48FA5600F0C521 /* CircleLabelView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A268B1831F47B23100F0C521 /* CircleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		A268B1851F47C52B00F0C521 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A268B1891F48FA5600F0C521 /* CircleLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabelView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				A2F4D1531F4753660079FFF0 /* MainViewController.swift */,
 				A268B1851F47C52B00F0C521 /* MapViewController.swift */,
+				A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				A268B19A1F4A285200F0C521 /* CoreDataModel.swift in Sources */,
 				A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */,
 				A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */,
+				A237AE4C1F4A743000BC54F5 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

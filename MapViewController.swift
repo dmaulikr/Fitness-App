@@ -94,7 +94,10 @@ class MapViewController: UIViewController {
         timer.invalidate()
         timePassed = Date().timeIntervalSinceReferenceDate - startTime
         timerActive = false
+        
+        self.performSegue(withIdentifier: "MapToResults", sender: nil)
     }
+    
     @IBAction func pauseButton(_ sender: UIButton) {
         if (timerActive) {
             timer.invalidate()
@@ -107,12 +110,6 @@ class MapViewController: UIViewController {
             pauseText.setTitle("Pause", for: .normal)
             timerActive = true
         }
-    }
-    
-
-    // Transition from Map View to Main View
-    @IBAction func BackTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToMain", sender: nil)
     }
     
     // Memory warnings
