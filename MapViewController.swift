@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
     func activateTimer() {
         // Show start time
         let dateTimeStart = DateFormatter()
-        dateTimeStart.timeStyle = .short
+        dateTimeStart.timeStyle = .medium
         dateTimeStart.doesRelativeDateFormatting = true
         let date = Date()
         let dateToString = dateTimeStart.string(from: date)
@@ -101,7 +101,7 @@ class MapViewController: UIViewController {
     @IBAction func stopTimer(_ sender: UIButton) {
         // Show stop time
         let dateTimeEnd = DateFormatter()
-        dateTimeEnd.timeStyle = .short
+        dateTimeEnd.timeStyle = .medium
         dateTimeEnd.doesRelativeDateFormatting = true
         let date = Date()
         let dateToString = dateTimeEnd.string(from: date)
