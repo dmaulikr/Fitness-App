@@ -41,10 +41,12 @@ class ResultsViewController: UITableViewController {
         // Sort descriptors for sorting the table view
         let sortDescriptorDate = NSSortDescriptor(key: "date", ascending: false,
                                               selector: #selector(NSString.localizedStandardCompare))
-        let sortDescriptorTime = NSSortDescriptor(key: "startHours", ascending: false,
-                                                  selector: #selector(NSString.localizedStandardCompare))
-        fetchRequest.sortDescriptors = [sortDescriptorDate, sortDescriptorTime]
+//        let sortDescriptorTime = NSSortDescriptor(key: "startHours", ascending: false,
+//                                                  selector: #selector(NSString.localizedStandardCompare))
+        //fetchRequest.sortDescriptors = [sortDescriptorDate, sortDescriptorTime]
 
+        fetchRequest.sortDescriptors = [sortDescriptorDate]
+        
         // Store results from fetch request in results array
         do {
             results = try context.fetch(fetchRequest)

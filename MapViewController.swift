@@ -41,6 +41,7 @@ class MapViewController: UIViewController {
         // Show Date
         let currentDate = DateFormatter()
         currentDate.dateStyle = .long
+        currentDate.timeStyle = .long
         let date = Date()
         let dateToString = currentDate.string(from: date)
         dateLabel.text = dateToString
