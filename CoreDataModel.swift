@@ -54,4 +54,10 @@ class CoreDataModel {
             }
         }
     }
+    
+    // MARK: - Core Data Retrieving
+    
+//    @nonobjc func fetchRequest() -> NSFetchRequest<ExerciseLoop> {
+//        return NSFetchRequest<ExerciseLoop>(entityName: "ExerciseLoop");
+//    }
 }

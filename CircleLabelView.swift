@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class CircleLabelView: UILabel {
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.masksToBounds = true

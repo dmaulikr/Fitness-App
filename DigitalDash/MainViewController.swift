@@ -11,29 +11,30 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
     }
 
-    /********************************************************************************
-     * StartTapped() method
-     *      - transitions to map view
-     *******************************************************************************/
+    // Segue from Home to Map
     @IBAction func StartTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToMap", sender: nil)
+        self.performSegue(withIdentifier: "HomeToMap", sender: nil)
     }
     
+    // Memory warning
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // Portrait mode only
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
     
+    // Does not autorotate
     override var shouldAutorotate: Bool {
         return false
     }

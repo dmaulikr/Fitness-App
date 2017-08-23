@@ -8,10 +8,15 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class MapViewController: UIViewController {
     
-    // IBOutlets for pauseButton and timerLabel
+    // Data model connection
+    lazy var coreDataModel = CoreDataModel()
+    lazy var coreDataArray = CoreDataArray()
+    
+    // IBOutlets
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
@@ -36,7 +41,6 @@ class MapViewController: UIViewController {
         // Show Date
         let currentDate = DateFormatter()
         currentDate.dateStyle = .long
-        
         let date = Date()
         let dateToString = currentDate.string(from: date)
         dateLabel.text = dateToString
@@ -45,22 +49,33 @@ class MapViewController: UIViewController {
  
     // Activate the timer
     func activateTimer() {
+        // Show start time
         let dateTimeStart = DateFormatter()
         dateTimeStart.timeStyle = .short
         dateTimeStart.doesRelativeDateFormatting = true
-        
         let date = Date()
         let dateToString = dateTimeStart.string(from: date)
         startTimeLabel.text = dateToString
+        
+        // Invalidate timer
         timer.invalidate()
+        
+        // Calculate start time
         startTime = Date().timeIntervalSinceReferenceDate - timePassed
+        
+        // Start scheduled timer
         timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
+        // Timer active
         timerActive = true
     }
     
     // Update the timer
     func updateTimer() {
+        // Calculate current time
         currentTime = Date().timeIntervalSinceReferenceDate - startTime
+        
+        // Update timer label
         timerLabel.text = timeToString(time: TimeInterval(currentTime))
     }
     
@@ -84,30 +99,69 @@ class MapViewController: UIViewController {
     
     // Stop the timer
     @IBAction func stopTimer(_ sender: UIButton) {
+        // Show stop time
         let dateTimeEnd = DateFormatter()
         dateTimeEnd.timeStyle = .short
         dateTimeEnd.doesRelativeDateFormatting = true
-        
         let date = Date()
         let dateToString = dateTimeEnd.string(from: date)
         endTimeLabel.text = dateToString
+        
+        // Start-end hours
+        let startHours = startTimeLabel.text as String?
+        let endHours = endTimeLabel.text as String?
+        let currentDate = dateLabel.text as String?
+        
+        // Invalidate timer
         timer.invalidate()
+        
+        // Calculate time passed
         timePassed = Date().timeIntervalSinceReferenceDate - startTime
+        
+        // Timer not active
         timerActive = false
         
+        // Core data saving
+        let context = coreDataModel.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "ExerciseLoop", in: context)
+        let exerciseLoop = NSManagedObject(entity: entity!, insertInto: context)
+        exerciseLoop.setValue(currentTime, forKeyPath: "time")
+        exerciseLoop.setValue(startHours, forKeyPath: "startHours")
+        exerciseLoop.setValue(endHours, forKeyPath: "endHours")
+        exerciseLoop.setValue(currentDate, forKeyPath: "date")
+        exerciseLoop.setValue(counter, forKeyPath: "exerciseID")
+        coreDataArray.resultsArray.append(exerciseLoop)
+        counter += 1
+        coreDataModel.saveContext()
+        
+        // Segue from Map to Results
         self.performSegue(withIdentifier: "MapToResults", sender: nil)
     }
     
     @IBAction func pauseButton(_ sender: UIButton) {
+        // If timer active, pause
         if (timerActive) {
+            // Invalidate timer
             timer.invalidate()
+            
+            // Calculate time passed
             timePassed = Date().timeIntervalSinceReferenceDate - startTime
+            
+            // Update button to text, play
             pauseText.setTitle("Play", for: .normal)
+            
+            // Time not active
             timerActive = false
         }
+        // If paused, play
         else {
+            // Start timer
             activateTimer()
+            
+            // Update button to text, pause
             pauseText.setTitle("Pause", for: .normal)
+            
+            // Timer active
             timerActive = true
         }
     }
