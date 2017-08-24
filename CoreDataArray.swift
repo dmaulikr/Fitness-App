@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 // Global var counter
-var counter = 0
+var counter = 1
 
 struct CoreDataArray {
     

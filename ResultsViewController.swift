@@ -99,7 +99,7 @@ class ResultsViewController: UITableViewController {
         let result = results[indexPath.row]
         
         // Show label with results
-        cell?.ExerciseIDLabel.text = String(describing: result.value(forKeyPath: "time")!) + " seconds"
+        cell?.ExerciseIDLabel.text = "Workout " + String(describing: result.value(forKeyPath: "exerciseID")!)
         cell?.ExerciseIDSubtitle.text = result.value(forKeyPath: "date") as? String
         
         return cell!
