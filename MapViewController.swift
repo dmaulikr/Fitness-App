@@ -14,7 +14,9 @@ class MapViewController: UIViewController {
     
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
-    lazy var coreDataArray = CoreDataArray()
+    
+    // Declare array to store entities as NSManagedObjects
+    var results: [NSManagedObject] = []
     
     // IBOutlets
     @IBOutlet weak var timerLabel: UILabel!
@@ -29,6 +31,7 @@ class MapViewController: UIViewController {
     var currentTime = 0.0
     var timePassed = 0.0
     var timerActive = false
+    var counter: Int16?
     
     // Load view
     override func viewDidLoad() {
@@ -122,17 +125,35 @@ class MapViewController: UIViewController {
         // Timer not active
         timerActive = false
         
-        // Core data saving
+        // Access core data context
         let context = coreDataModel.persistentContainer.viewContext
+        
+        // Create fetch request
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseLoop")
+        
+        // Store results from fetch request in results array
+        do {
+            results = try context.fetch(fetchRequest)
+            if (results.count == 0) {
+                counter = 1
+            }
+            else {
+                for result in results as! [ExerciseLoop] {
+                    counter = result.exerciseID + 1
+                }
+            }
+        } catch {
+            fatalError("Failed to fetch exercise loops: \(error)")
+        }
+        
+        // Core data saving
         let entity = NSEntityDescription.entity(forEntityName: "ExerciseLoop", in: context)
         let exerciseLoop = NSManagedObject(entity: entity!, insertInto: context)
         exerciseLoop.setValue(currentTime, forKeyPath: "time")
         exerciseLoop.setValue(startHours, forKeyPath: "startHours")
         exerciseLoop.setValue(endHours, forKeyPath: "endHours")
         exerciseLoop.setValue(currentDate, forKeyPath: "date")
-        exerciseLoop.setValue(counter, forKeyPath: "exerciseID")
-        coreDataArray.resultsArray.append(exerciseLoop)
-        counter += 1
+        exerciseLoop.setValue(counter!, forKeyPath: "exerciseID")
         coreDataModel.saveContext()
         
         // Segue from Map to Results

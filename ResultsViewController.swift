@@ -17,7 +17,6 @@ class ResultsViewController: UITableViewController {
     
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
-    lazy var coreDataArray = CoreDataArray()
     
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
