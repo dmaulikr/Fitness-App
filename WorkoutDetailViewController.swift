@@ -14,12 +14,18 @@ class WorkoutDetailViewController: UIViewController {
     
     // IBOutlet
     @IBOutlet weak var exerciseIDLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var startHoursLabel: UILabel!
+    @IBOutlet weak var endHoursLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
     
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
+    var result: NSManagedObject?
+    
     
     // Load view
     override func viewDidLoad() {
@@ -48,19 +54,34 @@ class WorkoutDetailViewController: UIViewController {
             results = try context.fetch(fetchRequest) as! [ExerciseLoop]
             
             if (resultsToWorkoutDetail) {
-                let result = self.results[rowClicked!]
-                exerciseIDLabel.text = "Workout " + String(describing: result.value(forKeyPath: "exerciseID")!)
+                result = self.results[rowClicked!]
                 resultsToWorkoutDetail = false
             }
             else {
-                let result = self.results[0]
-                exerciseIDLabel.text = "Workout " + String(describing: result.value(forKeyPath: "exerciseID")!)
+                result = self.results[0]
+                exerciseIDLabel.text = "Workout " + String(describing: result?.value(forKeyPath: "exerciseID")!)
             }
+            
+            // Update Labels
+            exerciseIDLabel.text = "Workout " + String(describing: result!.value(forKeyPath: "exerciseID")!)
+            dateLabel.text = " Date: " + String(describing: result!.value(forKeyPath: "dateShort")!)
+            startHoursLabel.text = " Start Hours: " + String(describing: result!.value(forKeyPath: "startHours")!)
+            endHoursLabel.text = " End Hours: " + String(describing: result!.value(forKeyPath: "endHours")!)
+            let timeVal = result!.value(forKeyPath: "time")
+            timeLabel.text = " Time: " + timeToString(time: timeVal as! TimeInterval)
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }
 
         
+    }
+    
+    // Convert timer from Int to String
+    func timeToString(time: TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02d hours %02d minutes %02d seconds", hours, minutes, seconds)
     }
     
     

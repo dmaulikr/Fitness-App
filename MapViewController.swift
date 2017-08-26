@@ -33,6 +33,8 @@ class MapViewController: UIViewController {
     var currentTime = 0.0
     var timePassed = 0.0
     var timerActive = false
+    var dateShortString: String?
+    
     
     // Load view
     override func viewDidLoad() {
@@ -49,6 +51,10 @@ class MapViewController: UIViewController {
         let date = Date()
         let dateToString = currentDate.string(from: date)
         dateLabel.text = dateToString
+        
+        let currentDateShort = DateFormatter()
+        currentDateShort.dateStyle = .long
+        dateShortString = currentDateShort.string(from: date)
     }
     
  
@@ -153,6 +159,7 @@ class MapViewController: UIViewController {
         exerciseLoop.setValue(startHours, forKeyPath: "startHours")
         exerciseLoop.setValue(endHours, forKeyPath: "endHours")
         exerciseLoop.setValue(currentDate, forKeyPath: "date")
+        exerciseLoop.setValue(dateShortString, forKey: "dateShort")
         exerciseLoop.setValue(counter!, forKeyPath: "exerciseID")
         coreDataModel.saveContext()
         
