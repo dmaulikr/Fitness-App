@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // Access core data context
+        let context = coreDataModel.persistentContainer.viewContext
+        
+        // Create fetch request
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseLoop")
+        
+        // Store results from fetch request in results array
+        do {
+            let results: [NSManagedObject] = try context.fetch(fetchRequest)
+            for result in results as! [ExerciseLoop] {
+                counter = result.exerciseID
+            }
+        } catch {
+            fatalError("Failed to fetch exercise loops: \(error)")
+        }
+
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

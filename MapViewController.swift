@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import CoreData
 
+var counter: Int16?
+
 class MapViewController: UIViewController {
     
     // Data model connection
@@ -31,7 +33,6 @@ class MapViewController: UIViewController {
     var currentTime = 0.0
     var timePassed = 0.0
     var timerActive = false
-    var counter: Int16?
     
     // Load view
     override func viewDidLoad() {
@@ -138,9 +139,7 @@ class MapViewController: UIViewController {
                 counter = 1
             }
             else {
-                for result in results as! [ExerciseLoop] {
-                    counter = result.exerciseID + 1
-                }
+                counter = counter! + 1
             }
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")

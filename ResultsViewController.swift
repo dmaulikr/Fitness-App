@@ -21,6 +21,7 @@ class ResultsViewController: UITableViewController {
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
     
+    
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +41,6 @@ class ResultsViewController: UITableViewController {
         // Sort descriptors for sorting the table view
         let sortDescriptorDate = NSSortDescriptor(key: "date", ascending: false,
                                               selector: #selector(NSString.localizedStandardCompare))
-//        let sortDescriptorTime = NSSortDescriptor(key: "startHours", ascending: false,
-//                                                  selector: #selector(NSString.localizedStandardCompare))
-        //fetchRequest.sortDescriptors = [sortDescriptorDate, sortDescriptorTime]
 
         fetchRequest.sortDescriptors = [sortDescriptorDate]
         
@@ -103,4 +101,74 @@ class ResultsViewController: UITableViewController {
         
         return cell!
     }
+    
+    // Deleting a workout
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            let workoutToDelete = results[indexPath.row]
+            
+            for result in results as! [ExerciseLoop] {
+                if (result == workoutToDelete) {
+                    //let workoutID = result.exerciseID
+                
+                    
+                    
+                    // Access core data context
+                    let context = coreDataModel.persistentContainer.viewContext
+            
+                    self.results.remove(at: indexPath.row)
+            
+                    ResultsTableView.deleteRows(at: [indexPath], with: .automatic)
+            
+                    context.delete(results[indexPath.row])
+            
+                    coreDataModel.saveContext()
+                    
+                    
+                    //ResultsTableView.reloadData()
+                    
+                    
+                    
+//                    let alert = UIAlertController(title: "Delete Workout", message: "Are you sure you want to delete Workout \(workoutID)?", preferredStyle: .actionSheet)
+//                    
+//                    let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteWorkout)
+//                    
+//                    let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteWorkout)
+//                    
+//                    alert.addAction(DeleteAction)
+//                    alert.addAction(CancelAction)
+//                    
+//                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+//    func handleDeleteWorkout(alertAction: UIAlertAction!) -> Void {
+//        
+//        // Access core data context
+//        let context = coreDataModel.persistentContainer.viewContext
+//        
+//        self.results.remove(at: (deleteWorkoutIndexPath?.row)!)
+//        
+//        ResultsTableView.deleteRows(at: [deleteWorkoutIndexPath as! IndexPath], with: .automatic)
+//        
+//        context.delete(results[(deleteWorkoutIndexPath!).row])
+//        
+//        coreDataModel.saveContext()
+//        
+//        print(deleteWorkoutIndexPath as! IndexPath)
+//        
+////        deleteWorkoutIndexPath = nil
+//        
+//        ResultsTableView.reloadData()
+//    }
+//    
+//    func cancelDeleteWorkout(alertAction: UIAlertAction!) {
+//        deleteWorkoutIndexPath = nil
+//    }
 }
