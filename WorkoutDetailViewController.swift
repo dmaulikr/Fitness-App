@@ -88,6 +88,10 @@ class WorkoutDetailViewController: UIViewController {
     @IBAction func HomeTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "WorkoutDetailToHome", sender: nil)
     }
+    
+    @IBAction func BackTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "WorkoutDetailToResults", sender: nil)
+    }
    
     
     // Memory warning

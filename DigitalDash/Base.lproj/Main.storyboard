@@ -245,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="33" y="878"/>
         </scene>
-        <!--Workout Detail View Controller-->
+        <!--WorkoutDetailViewController-->
         <scene sceneID="ODX-H3-2qr">
             <objects>
-                <viewController storyboardIdentifier="ResultsToWorkoutDetail" id="GbT-50-Y7n" customClass="WorkoutDetailViewController" customModule="DigitalDash" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultsToWorkoutDetail" id="GbT-50-Y7n" userLabel="WorkoutDetailViewController" customClass="WorkoutDetailViewController" customModule="DigitalDash" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vN1-yY-S7E"/>
                         <viewControllerLayoutGuide type="bottom" id="mX0-4E-s4M"/>
@@ -258,9 +258,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpJ-zt-lrx">
-                                <rect key="frame" x="16" y="20" width="63" height="30"/>
+                                <rect key="frame" x="299" y="20" width="63" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Home">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -309,6 +309,18 @@
                                 <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWg-2c-1ut">
+                                <rect key="frame" x="12" y="20" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Results">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="BackTapped:" destination="GbT-50-Y7n" eventType="touchUpInside" id="f0T-84-xkK"/>
+                                    <segue destination="eG3-YY-uZ5" kind="show" identifier="WorkoutDetailToResults" id="873-6j-o2y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -333,5 +345,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="hw0-QC-qaG"/>
         <segue reference="9Qz-qD-WYf"/>
+        <segue reference="873-6j-o2y"/>
     </inferredMetricsTieBreakers>
 </document>

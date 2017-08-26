@@ -34,6 +34,9 @@ class MapViewController: UIViewController {
     var timePassed = 0.0
     var timerActive = false
     var dateShortString: String?
+    var startHours: String?
+    var endHours: String?
+    var currentDate: String?
     
     
     // Load view
@@ -45,12 +48,12 @@ class MapViewController: UIViewController {
         activateTimer()
         
         // Show Date
-        let currentDate = DateFormatter()
-        currentDate.dateStyle = .long
-        currentDate.timeStyle = .long
+        let currentDateFormat = DateFormatter()
+        currentDateFormat.dateStyle = .long
+        currentDateFormat.timeStyle = .long
         let date = Date()
-        let dateToString = currentDate.string(from: date)
-        dateLabel.text = dateToString
+        currentDate = currentDateFormat.string(from: date)
+        dateLabel.text = currentDate
         
         let currentDateShort = DateFormatter()
         currentDateShort.dateStyle = .long
@@ -65,8 +68,8 @@ class MapViewController: UIViewController {
         dateTimeStart.timeStyle = .medium
         dateTimeStart.doesRelativeDateFormatting = true
         let date = Date()
-        let dateToString = dateTimeStart.string(from: date)
-        startTimeLabel.text = dateToString
+        startHours = dateTimeStart.string(from: date)
+        startTimeLabel.text = startHours
         
         // Invalidate timer
         timer.invalidate()
@@ -115,13 +118,8 @@ class MapViewController: UIViewController {
         dateTimeEnd.timeStyle = .medium
         dateTimeEnd.doesRelativeDateFormatting = true
         let date = Date()
-        let dateToString = dateTimeEnd.string(from: date)
-        endTimeLabel.text = dateToString
-        
-        // Start-end hours
-        let startHours = startTimeLabel.text as String?
-        let endHours = endTimeLabel.text as String?
-        let currentDate = dateLabel.text as String?
+        endHours = dateTimeEnd.string(from: date)
+        endTimeLabel.text = endHours
         
         // Invalidate timer
         timer.invalidate()
