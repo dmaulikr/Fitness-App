@@ -63,6 +63,9 @@ class ResultsViewController: UITableViewController {
         // Reload table view data
         ResultsTableView.reloadData()
     }
+    @IBAction func HomeTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "ResultsToHome", sender: nil)
+    }
     
     // Memory warning
     override func didReceiveMemoryWarning() {

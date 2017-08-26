@@ -23,6 +23,10 @@ class MainViewController: UIViewController {
         self.performSegue(withIdentifier: "HomeToMap", sender: nil)
     }
     
+    @IBAction func HistoryTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "HomeToResults", sender: nil)
+    }
+    
     // Memory warning
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

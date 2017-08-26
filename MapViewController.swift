@@ -156,8 +156,8 @@ class MapViewController: UIViewController {
         exerciseLoop.setValue(counter!, forKeyPath: "exerciseID")
         coreDataModel.saveContext()
         
-        // Segue from Map to Results
-        self.performSegue(withIdentifier: "MapToResults", sender: nil)
+        // Segue from Map to WorkoutDetail
+        self.performSegue(withIdentifier: "MapToWorkoutDetail", sender: nil)
     }
     
     @IBAction func pauseButton(_ sender: UIButton) {
