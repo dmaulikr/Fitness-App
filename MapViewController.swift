@@ -135,6 +135,7 @@ class MapViewController: UIViewController {
         // Store results from fetch request in results array
         do {
             results = try context.fetch(fetchRequest)
+            // Set counter to 1 initially, otherwise increase counter by 1
             if (results.count == 0) {
                 counter = 1
             }

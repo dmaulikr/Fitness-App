@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             let results: [NSManagedObject] = try context.fetch(fetchRequest)
             for result in results as! [ExerciseLoop] {
+                // Store the last result's exerciseID in the counter variable
                 counter = result.exerciseID
             }
         } catch {

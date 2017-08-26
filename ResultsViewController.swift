@@ -21,6 +21,9 @@ class ResultsViewController: UITableViewController {
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
     
+    // Index path
+    var path: IndexPath? = nil
+    
     
     // Load view
     override func viewDidLoad() {
@@ -107,68 +110,90 @@ class ResultsViewController: UITableViewController {
         return true
     }
     
+    // Commit editing style - delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        // Access core data context
+        let context = coreDataModel.persistentContainer.viewContext
+        
+        // Store indexPath in path
+        path = indexPath
+        
+        // Swipe right to left for delete
         if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // Workout results that user wants to delete
             let workoutToDelete = results[indexPath.row]
             
+            // Loop through results
             for result in results as! [ExerciseLoop] {
+                // Results matches workout user wants to delete
                 if (result == workoutToDelete) {
-                    //let workoutID = result.exerciseID
-                
+                    // Workout exerciseID
+                    let workoutID = result.exerciseID
                     
+                    // Set up delete and cancel alerts
+                    let alert = UIAlertController(title: "Delete Workout", message: "Are you sure you want to delete Workout \(workoutID)?", preferredStyle: .actionSheet)
+                    let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteWorkout)
+                    let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteWorkout)
                     
-                    // Access core data context
-                    let context = coreDataModel.persistentContainer.viewContext
-            
-                    self.results.remove(at: indexPath.row)
-            
-                    ResultsTableView.deleteRows(at: [indexPath], with: .automatic)
-            
-                    context.delete(results[indexPath.row])
-            
-                    coreDataModel.saveContext()
+                    // Add alerts
+                    alert.addAction(DeleteAction)
+                    alert.addAction(CancelAction)
                     
-                    
-                    //ResultsTableView.reloadData()
-                    
-                    
-                    
-//                    let alert = UIAlertController(title: "Delete Workout", message: "Are you sure you want to delete Workout \(workoutID)?", preferredStyle: .actionSheet)
-//                    
-//                    let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteWorkout)
-//                    
-//                    let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteWorkout)
-//                    
-//                    alert.addAction(DeleteAction)
-//                    alert.addAction(CancelAction)
-//                    
-//                    self.present(alert, animated: true, completion: nil)
+                    // Present alerts
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
+        
+        // Create fetch request to update new table data
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseLoop")
+        
+        // Sort descriptors for sorting the table view
+        let sortDescriptorDate = NSSortDescriptor(key: "date", ascending: false,
+                                                  selector: #selector(NSString.localizedStandardCompare))
+        fetchRequest.sortDescriptors = [sortDescriptorDate]
+
+        // try to fetch ExerciseLoop context from data model and store in results array
+        do {
+            results = try context.fetch(fetchRequest) as! [ExerciseLoop]
+            print("number of results: \(results.count)")
+            
+            for result in results as! [ExerciseLoop] {
+                print("\(result.exerciseID)")
+                print("\(result.time)")
+            }
+        } catch {
+            fatalError("Failed to fetch exercise loops: \(error)")
+        }
+        
+        // Reload table view data
+        ResultsTableView.reloadData()
     }
     
-//    func handleDeleteWorkout(alertAction: UIAlertAction!) -> Void {
-//        
-//        // Access core data context
-//        let context = coreDataModel.persistentContainer.viewContext
-//        
-//        self.results.remove(at: (deleteWorkoutIndexPath?.row)!)
-//        
-//        ResultsTableView.deleteRows(at: [deleteWorkoutIndexPath as! IndexPath], with: .automatic)
-//        
-//        context.delete(results[(deleteWorkoutIndexPath!).row])
-//        
-//        coreDataModel.saveContext()
-//        
-//        print(deleteWorkoutIndexPath as! IndexPath)
-//        
-////        deleteWorkoutIndexPath = nil
-//        
-//        ResultsTableView.reloadData()
-//    }
-//    
-//    func cancelDeleteWorkout(alertAction: UIAlertAction!) {
-//        deleteWorkoutIndexPath = nil
-//    }
+    // Delete alert handler
+    func handleDeleteWorkout(alertAction: UIAlertAction!) -> Void {
+        
+        // Access core data context
+        let context = coreDataModel.persistentContainer.viewContext
+        
+        // Delete object at row user wants to delete
+        context.delete(results[(path?.row)!])
+        
+        // Save core data model
+        coreDataModel.saveContext()
+        
+        // Remove object from results array
+        self.results.remove(at: (path?.row)!)
+        
+        // Delete row from table view
+        ResultsTableView.deleteRows(at: [path!], with: .automatic)
+        
+        // Set path to nil
+        path = nil
+    }
+    
+    // Cancel alert handler
+    func cancelDeleteWorkout(alertAction: UIAlertAction!) {
+        path = nil
+    }
 }
