@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import CoreData
 
+// Helper variables
+var resultsToWorkoutDetail = false
+var rowClicked: Int?
+
 class ResultsViewController: UITableViewController {
     
     // Table view
@@ -198,5 +202,18 @@ class ResultsViewController: UITableViewController {
     // Cancel alert handler
     func cancelDeleteWorkout(alertAction: UIAlertAction!) {
         path = nil
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        resultsToWorkoutDetail = true
+        rowClicked = indexPath.row
+        ResultsTableView.deselectRow(at: indexPath, animated: true)
+        
+        print("Selected row: \(rowClicked!)")
+        
+        let workoutDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ResultsToWorkoutDetail") as! WorkoutDetailViewController
+        
+        self.navigationController?.pushViewController(workoutDetailViewController, animated: true)
+        
     }
 }
