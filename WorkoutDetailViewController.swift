@@ -105,4 +105,14 @@ class WorkoutDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Portrait mode only
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    
+    // Does not autorotate
+    override var shouldAutorotate: Bool {
+        return false
+    }
 }

@@ -35,10 +35,6 @@
                                     <segue destination="Vfh-gV-mCo" kind="show" identifier="HomeToMap" id="RG4-cb-ZoD"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="xPb-m5-wAX">
-                                <rect key="frame" x="-45" y="0.0" width="464" height="156"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appLogoMain.png" translatesAutoresizingMaskIntoConstraints="NO" id="IqV-Px-5fW">
                                 <rect key="frame" x="87" y="106" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -56,6 +52,10 @@
                                     <segue destination="eG3-YY-uZ5" kind="show" identifier="HomeToResults" id="JKA-Di-qJT"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="xPb-m5-wAX">
+                                <rect key="frame" x="-35" y="20" width="445" height="146"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -242,7 +242,7 @@
         <scene sceneID="tjV-Cd-V0U">
             <objects>
                 <tableViewController id="eG3-YY-uZ5" customClass="ResultsViewController" customModule="DigitalDash" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YXp-pP-aCq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YXp-pP-aCq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -443,6 +443,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="hw0-QC-qaG"/>
         <segue reference="d1K-7j-RmM"/>
-        <segue reference="873-6j-o2y"/>
+        <segue reference="JKA-Di-qJT"/>
     </inferredMetricsTieBreakers>
 </document>
