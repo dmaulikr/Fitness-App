@@ -206,6 +206,14 @@ class MapViewController: UIViewController {
         // Invalidate timer
         timer.invalidate()
         
+        // Stop the pedometer
+        pedometer.stopUpdates()
+        
+        // Store pedometer values in String form
+        let stepsString: String = String(format: "%i", self.steps!)
+        let distanceString: String = String(format: "%.3f", self.metersToMiles(meters: self.distance!))
+        let averageSpeedString: String = self.minutesPerMile(pace: self.averageSpeed!)
+        
         // Calculate time passed
         timePassed = Date().timeIntervalSinceReferenceDate - startTime
         
@@ -241,6 +249,24 @@ class MapViewController: UIViewController {
         exerciseLoop.setValue(currentDate, forKeyPath: "date")
         exerciseLoop.setValue(dateShortString, forKey: "dateShort")
         exerciseLoop.setValue(counter!, forKeyPath: "exerciseID")
+        if (self.steps != nil) {
+            exerciseLoop.setValue(stepsString, forKeyPath: "steps")
+        }
+        else {
+            exerciseLoop.setValue("0", forKeyPath: "steps")
+        }
+        if (self.distance != nil) {
+            exerciseLoop.setValue(distanceString, forKeyPath: "distance")
+        }
+        else {
+            exerciseLoop.setValue("0", forKeyPath: "distance")
+        }
+        if (self.averageSpeed != nil) {
+            exerciseLoop.setValue(averageSpeedString, forKeyPath: "averageSpeed")
+        }
+        else {
+            exerciseLoop.setValue("0", forKeyPath: "averageSpeed")
+        }
         coreDataModel.saveContext()
         
         // Segue from Map to WorkoutDetail
@@ -252,9 +278,6 @@ class MapViewController: UIViewController {
         if (timerActive) {
             // Invalidate timer
             timer.invalidate()
-            
-            // Stop the pedometer
-            pedometer.stopUpdates()
             
             // Calculate time passed
             timePassed = Date().timeIntervalSinceReferenceDate - startTime
@@ -269,9 +292,6 @@ class MapViewController: UIViewController {
         else {
             // Start timer
             activateTimer()
-            
-            // Start pedomter
-            activatePedometer()
             
             // Update button to text, pause
             pauseText.setTitle("Pause", for: .normal)

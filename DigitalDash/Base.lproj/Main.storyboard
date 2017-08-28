@@ -392,15 +392,42 @@
                                     <segue destination="eG3-YY-uZ5" kind="show" identifier="WorkoutDetailToResults" id="873-6j-o2y"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2a-cq-8pd" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="12" y="293" width="350" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-Wb-TCm" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="12" y="336" width="350" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuY-To-6B9" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="12" y="379" width="350" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="DateLabel" destination="HHL-RE-486" id="h6X-ZI-D7e"/>
+                        <outlet property="averageSpeedLabel" destination="YuY-To-6B9" id="uqx-jB-69j"/>
                         <outlet property="dateLabel" destination="HHL-RE-486" id="eVS-Lu-ODT"/>
+                        <outlet property="distanceLabel" destination="C4i-Wb-TCm" id="bsN-LR-9BW"/>
                         <outlet property="endHoursLabel" destination="Jhf-hn-IgF" id="jGj-vK-dvl"/>
                         <outlet property="exerciseIDLabel" destination="Ijo-Oq-kwX" id="hlq-Pu-k0G"/>
                         <outlet property="startHoursLabel" destination="F7n-PA-7RW" id="dDx-cG-Nif"/>
+                        <outlet property="stepsLabel" destination="e2a-cq-8pd" id="5h7-j1-F1v"/>
                         <outlet property="timeLabel" destination="Mlk-ZE-cW4" id="nXV-a8-Aq6"/>
                     </connections>
                 </viewController>

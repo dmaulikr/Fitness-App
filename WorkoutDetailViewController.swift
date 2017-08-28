@@ -18,6 +18,9 @@ class WorkoutDetailViewController: UIViewController {
     @IBOutlet weak var startHoursLabel: UILabel!
     @IBOutlet weak var endHoursLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var stepsLabel: CircleLabelView!
+    @IBOutlet weak var distanceLabel: CircleLabelView!
+    @IBOutlet weak var averageSpeedLabel: CircleLabelView!
     
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
@@ -69,6 +72,9 @@ class WorkoutDetailViewController: UIViewController {
             endHoursLabel.text = " End Hours: " + String(describing: result!.value(forKeyPath: "endHours")!)
             let timeVal = result!.value(forKeyPath: "time")
             timeLabel.text = " Time: " + timeToString(time: timeVal as! TimeInterval)
+            stepsLabel.text = " Steps: " + String(describing: result!.value(forKeyPath: "steps")!)
+            distanceLabel.text = " Distance: " + String(describing: result!.value(forKeyPath: "distance")!) + " miles"
+            averageSpeedLabel.text = " Average Speed: " + String(describing: result!.value(forKeyPath: "averageSpeed")!)
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }

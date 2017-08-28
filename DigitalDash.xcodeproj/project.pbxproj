@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A237AE4C1F4A743000BC54F5 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */; };
 		A237AE621F4D072D00BC54F5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */; };
+		A24E440C1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */; };
+		A24E440D1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */; };
 		A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1831F47B23100F0C521 /* CircleButtonView.swift */; };
 		A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1851F47C52B00F0C521 /* MapViewController.swift */; };
 		A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1891F48FA5600F0C521 /* CircleLabelView.swift */; };
@@ -16,8 +18,6 @@
 		A268B1961F4951E300F0C521 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = A268B1951F4951E300F0C521 /* title.png */; };
 		A268B19A1F4A285200F0C521 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1991F4A285200F0C521 /* CoreDataModel.swift */; };
 		A2A8EA161F51F9A40066A2F0 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A8EA151F51F9A40066A2F0 /* WorkoutDetailViewController.swift */; };
-		A2A8EA191F52141A0066A2F0 /* ExerciseLoop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A8EA171F52141A0066A2F0 /* ExerciseLoop+CoreDataClass.swift */; };
-		A2A8EA1A1F52141A0066A2F0 /* ExerciseLoop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A8EA181F52141A0066A2F0 /* ExerciseLoop+CoreDataProperties.swift */; };
 		A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1511F4753660079FFF0 /* AppDelegate.swift */; };
 		A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1531F4753660079FFF0 /* MainViewController.swift */; };
 		A2F4D1571F4753660079FFF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F4D1551F4753660079FFF0 /* Main.storyboard */; };
@@ -50,6 +50,8 @@
 /* Begin PBXFileReference section */
 		A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
+		A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A268B1831F47B23100F0C521 /* CircleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		A268B1851F47C52B00F0C521 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A268B1891F48FA5600F0C521 /* CircleLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabelView.swift; sourceTree = "<group>"; };
@@ -57,8 +59,6 @@
 		A268B1951F4951E300F0C521 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		A268B1991F4A285200F0C521 /* CoreDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		A2A8EA151F51F9A40066A2F0 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
-		A2A8EA171F52141A0066A2F0 /* ExerciseLoop+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A2A8EA181F52141A0066A2F0 /* ExerciseLoop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A2F4D14E1F4753660079FFF0 /* DigitalDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F4D1511F4753660079FFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F4D1531F4753660079FFF0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = DigitalDash/MainViewController.swift; sourceTree = "<group>"; };
@@ -160,8 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				A2F4D1581F4753660079FFF0 /* DigitalDash.xcdatamodeld */,
-				A2A8EA171F52141A0066A2F0 /* ExerciseLoop+CoreDataClass.swift */,
-				A2A8EA181F52141A0066A2F0 /* ExerciseLoop+CoreDataProperties.swift */,
+				A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */,
+				A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */,
 				A268B1991F4A285200F0C521 /* CoreDataModel.swift */,
 			);
 			name = Model;
@@ -341,8 +341,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */,
-				A2A8EA1A1F52141A0066A2F0 /* ExerciseLoop+CoreDataProperties.swift in Sources */,
-				A2A8EA191F52141A0066A2F0 /* ExerciseLoop+CoreDataClass.swift in Sources */,
+				A24E440D1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift in Sources */,
+				A24E440C1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift in Sources */,
 				A2F4D15A1F4753660079FFF0 /* DigitalDash.xcdatamodeld in Sources */,
 				A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */,
 				A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */,
