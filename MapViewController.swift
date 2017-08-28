@@ -74,6 +74,7 @@ class MapViewController: UIViewController {
         currentDate = currentDateFormat.string(from: date)
         dateLabel.text = currentDate
         
+        // Store Date without timeStyle
         let currentDateShort = DateFormatter()
         currentDateShort.dateStyle = .long
         dateShortString = currentDateShort.string(from: date)
@@ -105,23 +106,21 @@ class MapViewController: UIViewController {
     
     // Activate the pedometer
     func activatePedometer() {
+        // Start pedometer updates
         pedometer.startUpdates(from: Date(), withHandler: {
             (data: CMPedometerData?, error: Error?) -> Void in
             if let data = data {
-//                self.steps = data.numberOfSteps as Int?
-//                self.distance = data.distance as Double?
-//                self.speed = data.currentPace as Double?
-//                self.averageSpeed = data.averageActivePace as Double?
-                
-                
+                // DispatchQueue on main
                 DispatchQueue.main.async(execute: { () -> Void in
                     if (error == nil)
                     {
+                        // Store data into predefined variables
                         self.steps = data.numberOfSteps as Int?
                         self.distance = data.distance as Double?
                         self.speed = data.currentPace as Double?
                         self.averageSpeed = data.averageActivePace as Double?
                         
+                        // Update labels, prevent optional crash
                         if (self.steps != nil) {
                             self.stepsLabel.text = String(format: "Steps: %i", self.steps!)
                             UILabel.transition(with: self.stepsLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
@@ -138,7 +137,6 @@ class MapViewController: UIViewController {
                             self.speedLabel.text = self.minutesPerMile(pace: self.speed!)
                             UILabel.transition(with: self.speedLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                         }
-
                     }
                     else {
                         print(error!)
@@ -149,12 +147,14 @@ class MapViewController: UIViewController {
         })
     }
     
+    // Convert meters to miles
     func metersToMiles(meters: Double) -> Double {
         let mileRatio = 1609.344
         let miles: Double = meters / mileRatio
         return miles
     }
     
+    // Convert meters per second to minutes per mile
     func minutesPerMile(pace: Double) -> String {
         var conversion = 0.0
         let conversionRatio = 26.8224
@@ -209,10 +209,30 @@ class MapViewController: UIViewController {
         // Stop the pedometer
         pedometer.stopUpdates()
         
+        // Store temp variables
+        var stepsString: String
+        var distanceString: String
+        var averageSpeedString: String
+        
         // Store pedometer values in String form
-        let stepsString: String = String(format: "%i", self.steps!)
-        let distanceString: String = String(format: "%.3f", self.metersToMiles(meters: self.distance!))
-        let averageSpeedString: String = self.minutesPerMile(pace: self.averageSpeed!)
+        if (self.steps != nil) {
+            stepsString = String(format: "%i", self.steps!)
+        }
+        else {
+            stepsString = "0"
+        }
+        if (self.distance != nil) {
+            distanceString = String(format: "%.3f", self.metersToMiles(meters: self.distance!))
+        }
+        else {
+            distanceString = "0"
+        }
+        if (self.averageSpeed != nil) {
+            averageSpeedString = self.minutesPerMile(pace: self.averageSpeed!)
+        }
+        else {
+            averageSpeedString = "0"
+        }
         
         // Calculate time passed
         timePassed = Date().timeIntervalSinceReferenceDate - startTime
@@ -249,24 +269,9 @@ class MapViewController: UIViewController {
         exerciseLoop.setValue(currentDate, forKeyPath: "date")
         exerciseLoop.setValue(dateShortString, forKey: "dateShort")
         exerciseLoop.setValue(counter!, forKeyPath: "exerciseID")
-        if (self.steps != nil) {
-            exerciseLoop.setValue(stepsString, forKeyPath: "steps")
-        }
-        else {
-            exerciseLoop.setValue("0", forKeyPath: "steps")
-        }
-        if (self.distance != nil) {
-            exerciseLoop.setValue(distanceString, forKeyPath: "distance")
-        }
-        else {
-            exerciseLoop.setValue("0", forKeyPath: "distance")
-        }
-        if (self.averageSpeed != nil) {
-            exerciseLoop.setValue(averageSpeedString, forKeyPath: "averageSpeed")
-        }
-        else {
-            exerciseLoop.setValue("0", forKeyPath: "averageSpeed")
-        }
+        exerciseLoop.setValue(stepsString, forKeyPath: "steps")
+        exerciseLoop.setValue(distanceString, forKeyPath: "distance")
+        exerciseLoop.setValue(averageSpeedString, forKeyPath: "averageSpeed")
         coreDataModel.saveContext()
         
         // Segue from Map to WorkoutDetail

@@ -90,11 +90,12 @@ class WorkoutDetailViewController: UIViewController {
         return String(format:"%02d hours %02d minutes %02d seconds", hours, minutes, seconds)
     }
     
-    
+    // Home button tapped
     @IBAction func HomeTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "WorkoutDetailToHome", sender: nil)
     }
     
+    // Back button tapped
     @IBAction func BackTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "WorkoutDetailToResults", sender: nil)
     }
