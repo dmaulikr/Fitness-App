@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 import CoreData
+import CoreMotion
 
 var counter: Int16?
+var pedometer = CMPedometer()
 
 class MapViewController: UIViewController {
     
@@ -26,6 +28,10 @@ class MapViewController: UIViewController {
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var pauseText: UIButton!
+    @IBOutlet weak var stepsLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var averageSpeedLabel: UILabel!
     
     // Declare timer variables
     var timer = Timer()
@@ -33,10 +39,18 @@ class MapViewController: UIViewController {
     var currentTime = 0.0
     var timePassed = 0.0
     var timerActive = false
+    
+    // Declare date variables
     var dateShortString: String?
     var startHours: String?
     var endHours: String?
     var currentDate: String?
+    
+    // Declare motion variables
+    var steps: Int? = nil
+    var distance: Double? = nil
+    var speed: Double? = nil
+    var averageSpeed: Double? = nil
     
     
     // Load view
@@ -46,6 +60,9 @@ class MapViewController: UIViewController {
         
         // Start the timer
         activateTimer()
+        
+        // Start the pedometer
+        activatePedometer()
         
         // Show Date
         let currentDateFormat = DateFormatter()
@@ -82,6 +99,70 @@ class MapViewController: UIViewController {
         
         // Timer active
         timerActive = true
+    }
+    
+    // Activate the pedometer
+    func activatePedometer() {
+        pedometer.startUpdates(from: Date(), withHandler: {
+            (data: CMPedometerData?, error: Error?) -> Void in
+            if let data = data {
+//                self.steps = data.numberOfSteps as Int?
+//                self.distance = data.distance as Double?
+//                self.speed = data.currentPace as Double?
+//                self.averageSpeed = data.averageActivePace as Double?
+                
+                
+                DispatchQueue.main.async(execute: { () -> Void in
+                    if (error == nil)
+                    {
+                        self.steps = data.numberOfSteps as Int?
+                        self.distance = data.distance as Double?
+                        self.speed = data.currentPace as Double?
+                        self.averageSpeed = data.averageActivePace as Double?
+                        
+                        if (self.steps != nil) {
+                            self.stepsLabel.text = String(format: "Steps: %i", self.steps!)
+                            UILabel.transition(with: self.stepsLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                        }
+                        if (self.distance != nil) {
+                            self.distanceLabel.text = String(format: "%d miles", self.metersToMiles(meters: self.distance!))
+                            UILabel.transition(with: self.distanceLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                        }
+                        if (self.averageSpeed != nil) {
+                            self.averageSpeedLabel.text = self.minutesPerMile(pace: self.averageSpeed!)
+                            UILabel.transition(with: self.averageSpeedLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                        }
+                        if (self.speed != nil) {
+                            self.speedLabel.text = self.minutesPerMile(pace: self.speed!)
+                            UILabel.transition(with: self.speedLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                        }
+
+                    }
+                    else {
+                        print(error!)
+                    }
+                }
+            )
+            }
+        })
+    }
+    
+    func metersToMiles(meters: Double) -> Double {
+        //let mileRatio = 0.000621371
+        let mileRatio = 1609.344
+        let miles: Double = meters / mileRatio
+        return miles
+    }
+    
+    func minutesPerMile(pace: Double) -> String {
+        var conversion = 0.0
+        let conversionRatio = 26.8224
+        if pace != 0 {
+            conversion = conversionRatio / pace
+        }
+        let minutes = Int(conversion)
+        let seconds = Int(conversion * 60) % 60
+        return String(format: "%02d:%02d minutes/mile", minutes, seconds)
     }
     
     // Update the timer
@@ -171,6 +252,9 @@ class MapViewController: UIViewController {
             // Invalidate timer
             timer.invalidate()
             
+            // Stop the pedometer
+            pedometer.stopUpdates()
+            
             // Calculate time passed
             timePassed = Date().timeIntervalSinceReferenceDate - startTime
             
@@ -184,6 +268,9 @@ class MapViewController: UIViewController {
         else {
             // Start timer
             activateTimer()
+            
+            // Start pedomter
+            activatePedometer()
             
             // Update button to text, pause
             pauseText.setTitle("Pause", for: .normal)
