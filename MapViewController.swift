@@ -12,7 +12,6 @@ import CoreData
 import CoreMotion
 
 var counter: Int16?
-var pedometer = CMPedometer()
 
 class MapViewController: UIViewController {
     
@@ -21,6 +20,9 @@ class MapViewController: UIViewController {
     
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
+    
+    // Pedometer
+    let pedometer = CMPedometer()
     
     // IBOutlets
     @IBOutlet weak var timerLabel: UILabel!
@@ -125,7 +127,7 @@ class MapViewController: UIViewController {
                             UILabel.transition(with: self.stepsLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                         }
                         if (self.distance != nil) {
-                            self.distanceLabel.text = String(format: "%d miles", self.metersToMiles(meters: self.distance!))
+                            self.distanceLabel.text = String(format: "%.3f", self.metersToMiles(meters: self.distance!)) + " miles"
                             UILabel.transition(with: self.distanceLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                         }
                         if (self.averageSpeed != nil) {
@@ -148,7 +150,6 @@ class MapViewController: UIViewController {
     }
     
     func metersToMiles(meters: Double) -> Double {
-        //let mileRatio = 0.000621371
         let mileRatio = 1609.344
         let miles: Double = meters / mileRatio
         return miles
