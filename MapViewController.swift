@@ -30,6 +30,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var pauseText: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var distanceLabel: CircleLabelView!
     
     // Location Manager
     var locationManager: CLLocationManager!
@@ -62,11 +63,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Start the timer
-        activateTimer()
-        
-        // Start the pedometer
-        activatePedometer()
+        // Start mapView updates
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.mapType = MKMapType.standard
+        mapView.userTrackingMode = MKUserTrackingMode.follow
         
         // Start location updates
         locationManager = CLLocationManager()
@@ -78,11 +79,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         locationManager.startUpdatingLocation()
         
-        // Start mapView updates
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        mapView.mapType = MKMapType.standard
-        mapView.userTrackingMode = MKUserTrackingMode.follow
+        // Start the timer
+        activateTimer()
+        
+        // Start the pedometer
+        activatePedometer()
         
         // Show Date
         let currentDateFormat = DateFormatter()
@@ -99,17 +100,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // Track location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        // Loop through locations
         for newLocation in locations {
-        
+            // Set old location to the last location in array
             if let oldLocation = locations.last {
+                // Calculate distance change
                 let delta = newLocation.distance(from: oldLocation)
                 mapDistance = mapDistance! + metersToMiles(meters: delta)
+                // Update distance label
+                self.distanceLabel.text = String(format: "%.3f mi", mapDistance!)
+                // Store coordinates of old and new location
                 let coordinates = [oldLocation.coordinate, newLocation.coordinate]
+                // Assign polyline to the coordinates
                 let polyline = MKPolyline(coordinates: coordinates, count: 2)
+                // Add polyline to the map view
                 mapView.add(polyline)
-                //let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500)
-                //mapView.setRegion(region, animated: true)
             }
             
         }
@@ -118,11 +123,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // Draw current route
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if (overlay is MKPolyline) {
-            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = UIColor.red
-            polylineRenderer.lineWidth = 5
-            return polylineRenderer
+        // Prevent polyline from drawing while map is still loading
+        if (currentTime > 2) {
+            // Overlay is a polyline
+            if (overlay is MKPolyline) {
+                // Draw polyline with renderer as red line
+                let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+                polylineRenderer.strokeColor = UIColor.red
+                polylineRenderer.lineWidth = 5
+                return polylineRenderer
+            }
         }
         return MKOverlayRenderer(overlay: overlay)
     }
@@ -309,6 +319,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBAction func pauseButton(_ sender: UIButton) {
         // If timer active, pause
         if (timerActive) {
+            // Stop location updates
+            locationManager.startUpdatingLocation()
+            
             // Invalidate timer
             timer.invalidate()
             
@@ -316,18 +329,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             timePassed = Date().timeIntervalSinceReferenceDate - startTime
             
             // Update button to text, play
-            pauseText.setTitle("Play", for: .normal)
+            pauseText.setTitle("|>", for: .normal)
             
             // Time not active
             timerActive = false
         }
         // If paused, play
         else {
+            // Start location updates
+            locationManager.startUpdatingLocation()
+            
             // Start timer
             activateTimer()
             
             // Update button to text, pause
-            pauseText.setTitle("Pause", for: .normal)
+            pauseText.setTitle("| |", for: .normal)
             
             // Timer active
             timerActive = true

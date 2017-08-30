@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,10 +78,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTL-3x-DG2" userLabel="Stop Button" customClass="CircleButtonView" customModule="DigitalDash" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTL-3x-DG2" userLabel="Stop Button" customClass="CircleButtonView" customModule="DigitalDash" customModuleProvider="target">
                                 <rect key="frame" x="324" y="20" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.0099468241871529806" blue="0.0" alpha="0.84834397009859153" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Qaq-0T-9dT"/>
+                                    <constraint firstAttribute="height" constant="35" id="eoX-2i-nSr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="tintColor" red="0.98958333330000003" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="X">
@@ -90,22 +95,13 @@
                                     <segue destination="GbT-50-Y7n" kind="show" identifier="MapToWorkoutDetail" id="d1K-7j-RmM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32W-WH-MW3" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="87" y="20" width="200" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.77542098445595853" green="0.77452192603887171" blue="0.76746356997639253" alpha="0.87197403169014087" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jDt-ns-fcr">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIP-hD-z5x" customClass="CircleButtonView" customModule="DigitalDash" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIP-hD-z5x" customClass="CircleButtonView" customModule="DigitalDash" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.67444700002670288" green="0.67462551593780518" blue="0.67034429311752319" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="1EE-NG-a3E"/>
+                                    <constraint firstAttribute="width" constant="35" id="VDr-7L-89u"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="| |">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,10 +110,48 @@
                                     <action selector="pauseButton:" destination="Vfh-gV-mCo" eventType="touchUpInside" id="laF-yK-sww"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32W-WH-MW3" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="59" y="20" width="125" height="35"/>
+                                <color key="backgroundColor" red="0.77542098445595853" green="0.77452192603887171" blue="0.76746356997639253" alpha="0.87197403169014087" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jDt-ns-fcr">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7w-8j-jaY" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="191" y="20" width="125" height="35"/>
+                                <color key="backgroundColor" red="0.77542098449999997" green="0.77452192600000003" blue="0.76746356999999998" alpha="0.87197403169999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="X4g-YJ-zuu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="o7w-8j-jaY" firstAttribute="bottom" secondItem="ZTL-3x-DG2" secondAttribute="bottom" id="1bP-mD-2da"/>
+                            <constraint firstItem="o7w-8j-jaY" firstAttribute="baseline" secondItem="32W-WH-MW3" secondAttribute="baseline" id="4Lg-6t-gJg"/>
+                            <constraint firstItem="GwY-pW-Of7" firstAttribute="top" secondItem="jDt-ns-fcr" secondAttribute="bottom" id="6J7-ea-B1s"/>
+                            <constraint firstItem="ZTL-3x-DG2" firstAttribute="top" secondItem="2Nj-KB-vXN" secondAttribute="bottom" id="Csr-4G-nn0"/>
+                            <constraint firstAttribute="trailing" secondItem="jDt-ns-fcr" secondAttribute="trailing" id="JZ2-Bk-auI"/>
+                            <constraint firstItem="jDt-ns-fcr" firstAttribute="top" secondItem="32W-WH-MW3" secondAttribute="bottom" constant="25" id="Ksh-Ot-Nlo"/>
+                            <constraint firstItem="cIP-hD-z5x" firstAttribute="leading" secondItem="10b-PZ-O35" secondAttribute="leadingMargin" id="Piu-fU-6VX"/>
+                            <constraint firstItem="o7w-8j-jaY" firstAttribute="firstBaseline" secondItem="32W-WH-MW3" secondAttribute="firstBaseline" id="egx-XZ-3uk"/>
+                            <constraint firstItem="cIP-hD-z5x" firstAttribute="top" secondItem="2Nj-KB-vXN" secondAttribute="bottom" id="jFI-Qe-oZk"/>
+                            <constraint firstItem="ZTL-3x-DG2" firstAttribute="leading" secondItem="o7w-8j-jaY" secondAttribute="trailing" constant="8" symbolic="YES" id="k9t-nE-Fod"/>
+                            <constraint firstItem="32W-WH-MW3" firstAttribute="top" secondItem="cIP-hD-z5x" secondAttribute="top" id="rKP-2D-VrJ"/>
+                            <constraint firstItem="jDt-ns-fcr" firstAttribute="leading" secondItem="10b-PZ-O35" secondAttribute="leading" id="rwz-Gq-u9R"/>
+                            <constraint firstItem="32W-WH-MW3" firstAttribute="leading" secondItem="cIP-hD-z5x" secondAttribute="trailing" constant="8" symbolic="YES" id="vkn-mg-hLg"/>
+                            <constraint firstItem="o7w-8j-jaY" firstAttribute="leading" secondItem="32W-WH-MW3" secondAttribute="trailing" constant="7" id="y9r-F7-Iwi"/>
+                            <constraint firstItem="ZTL-3x-DG2" firstAttribute="trailing" secondItem="10b-PZ-O35" secondAttribute="trailingMargin" id="ydv-Cb-6JB"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="distanceLabel" destination="o7w-8j-jaY" id="e4b-nM-ryf"/>
                         <outlet property="mapView" destination="jDt-ns-fcr" id="13l-88-46Y"/>
                         <outlet property="pauseText" destination="cIP-hD-z5x" id="1Hb-0s-bXG"/>
                         <outlet property="timerLabel" destination="32W-WH-MW3" id="oRb-Pm-NDo"/>
