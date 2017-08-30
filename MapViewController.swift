@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 import CoreData
 import CoreMotion
+import MapKit
+import CoreLocation
 
 var counter: Int16?
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
@@ -26,14 +28,11 @@ class MapViewController: UIViewController {
     
     // IBOutlets
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var pauseText: UIButton!
-    @IBOutlet weak var stepsLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var speedLabel: UILabel!
-    @IBOutlet weak var averageSpeedLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    // Location Manager
+    var locationManager: CLLocationManager!
     
     // Declare timer variables
     var timer = Timer()
@@ -54,6 +53,9 @@ class MapViewController: UIViewController {
     var speed: Double? = nil
     var averageSpeed: Double? = nil
     
+    // Declare map variables
+    var mapDistance: Double? = 0.0
+    
     
     // Load view
     override func viewDidLoad() {
@@ -66,18 +68,63 @@ class MapViewController: UIViewController {
         // Start the pedometer
         activatePedometer()
         
+        // Start location updates
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        if (authorizationStatus == .notDetermined || authorizationStatus == .denied) {
+            locationManager.requestAlwaysAuthorization()
+        }
+        locationManager.startUpdatingLocation()
+        
+        // Start mapView updates
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.mapType = MKMapType.standard
+        mapView.userTrackingMode = MKUserTrackingMode.follow
+        
         // Show Date
         let currentDateFormat = DateFormatter()
         currentDateFormat.dateStyle = .long
         currentDateFormat.timeStyle = .long
         let date = Date()
         currentDate = currentDateFormat.string(from: date)
-        dateLabel.text = currentDate
         
         // Store Date without timeStyle
         let currentDateShort = DateFormatter()
         currentDateShort.dateStyle = .long
         dateShortString = currentDateShort.string(from: date)
+    }
+    
+    // Track location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        for newLocation in locations {
+        
+            if let oldLocation = locations.last {
+                let delta = newLocation.distance(from: oldLocation)
+                mapDistance = mapDistance! + metersToMiles(meters: delta)
+                let coordinates = [oldLocation.coordinate, newLocation.coordinate]
+                let polyline = MKPolyline(coordinates: coordinates, count: 2)
+                mapView.add(polyline)
+                //let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500)
+                //mapView.setRegion(region, animated: true)
+            }
+            
+        }
+        
+    }
+    
+    // Draw current route
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if (overlay is MKPolyline) {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.red
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
     }
     
  
@@ -89,7 +136,6 @@ class MapViewController: UIViewController {
         dateTimeStart.doesRelativeDateFormatting = true
         let date = Date()
         startHours = dateTimeStart.string(from: date)
-        startTimeLabel.text = startHours
         
         // Invalidate timer
         timer.invalidate()
@@ -120,23 +166,6 @@ class MapViewController: UIViewController {
                         self.speed = data.currentPace as Double?
                         self.averageSpeed = data.averageActivePace as Double?
                         
-                        // Update labels, prevent optional crash
-                        if (self.steps != nil) {
-                            self.stepsLabel.text = String(format: "Steps: %i", self.steps!)
-                            UILabel.transition(with: self.stepsLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                        }
-                        if (self.distance != nil) {
-                            self.distanceLabel.text = String(format: "%.3f", self.metersToMiles(meters: self.distance!)) + " miles"
-                            UILabel.transition(with: self.distanceLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                        }
-                        if (self.averageSpeed != nil) {
-                            self.averageSpeedLabel.text = self.minutesPerMile(pace: self.averageSpeed!)
-                            UILabel.transition(with: self.averageSpeedLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                        }
-                        if (self.speed != nil) {
-                            self.speedLabel.text = self.minutesPerMile(pace: self.speed!)
-                            UILabel.transition(with: self.speedLabel, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                        }
                     }
                     else {
                         print(error!)
@@ -201,7 +230,6 @@ class MapViewController: UIViewController {
         dateTimeEnd.doesRelativeDateFormatting = true
         let date = Date()
         endHours = dateTimeEnd.string(from: date)
-        endTimeLabel.text = endHours
         
         // Invalidate timer
         timer.invalidate()

@@ -11,6 +11,7 @@
 		A237AE621F4D072D00BC54F5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */; };
 		A24E440C1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */; };
 		A24E440D1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */; };
+		A24E44101F574B690026AD5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24E440F1F574B690026AD5A /* CoreLocation.framework */; };
 		A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1831F47B23100F0C521 /* CircleButtonView.swift */; };
 		A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1851F47C52B00F0C521 /* MapViewController.swift */; };
 		A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1891F48FA5600F0C521 /* CircleLabelView.swift */; };
@@ -52,6 +53,7 @@
 		A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A24E440F1F574B690026AD5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A268B1831F47B23100F0C521 /* CircleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		A268B1851F47C52B00F0C521 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A268B1891F48FA5600F0C521 /* CircleLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabelView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A24E44101F574B690026AD5A /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A24E440E1F574B680026AD5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A24E440F1F574B690026AD5A /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A2F4D1451F4753660079FFF0 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +124,7 @@
 				A2F4D1681F4753660079FFF0 /* DigitalDashTests */,
 				A2F4D1731F4753660079FFF0 /* DigitalDashUITests */,
 				A2F4D14F1F4753660079FFF0 /* Products */,
+				A24E440E1F574B680026AD5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -269,6 +281,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = MXX6H4NWH4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A2F4D1641F4753660079FFF0 = {
 						CreatedOnToolsVersion = 8.2.1;
