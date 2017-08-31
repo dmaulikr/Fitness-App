@@ -54,10 +54,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var speed: Double? = nil
     var averageSpeed: Double? = nil
     
-    // Declare map variables
-    var mapDistance: Double? = 0.0
-    
-    
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,11 +100,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         for newLocation in locations {
             // Set old location to the last location in array
             if let oldLocation = locations.last {
-                // Calculate distance change
-                let delta = newLocation.distance(from: oldLocation)
-                mapDistance = mapDistance! + metersToMiles(meters: delta)
-                // Update distance label
-                self.distanceLabel.text = String(format: "%.3f mi", mapDistance!)
                 // Store coordinates of old and new location
                 let coordinates = [oldLocation.coordinate, newLocation.coordinate]
                 // Assign polyline to the coordinates
@@ -212,6 +203,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         // Update timer label
         timerLabel.text = timeToString(time: TimeInterval(currentTime))
+        
+        // Update distance label
+        if (self.distance != nil) {
+            self.distanceLabel.text = String(format: "%.3f mi", metersToMiles(meters: distance!))
+        }
+        else {
+            self.distanceLabel.text = "0.000 mi"
+        }
     }
     
     // Convert timer from Int to String
@@ -320,7 +319,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // If timer active, pause
         if (timerActive) {
             // Stop location updates
-            locationManager.startUpdatingLocation()
+            locationManager.stopUpdatingLocation()
             
             // Invalidate timer
             timer.invalidate()
