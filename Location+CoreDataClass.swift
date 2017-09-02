@@ -1,5 +1,5 @@
 //
-//  ExerciseLoop+CoreDataClass.swift
+//  Location+CoreDataClass.swift
 //  DigitalDash
 //
 //  Created by Nicholas Blackburn on 9/2/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(ExerciseLoop)
-public class ExerciseLoop: NSManagedObject {
+@objc(Location)
+public class Location: NSManagedObject {
 
 }

@@ -49,10 +49,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var currentDate: String?
     
     // Declare motion variables
-    var steps: Int? = nil
-    var distance: Double? = nil
+//    var steps: Int? = nil
+//    var distance: Double? = nil
     var speed: Double? = nil
-    var averageSpeed: Double? = nil
+//    var averageSpeed: Double? = nil
+    var steps: Int? = 0
+    var distance: Double? = 0.0
+    var averageSpeed: Double? = 0.0
+    var pausedSteps: Int? = 0
+    var pausedDistance: Double? = 0.0
+    var exerciseLocations: [CLLocation] = []
     
     // Load view
     override func viewDidLoad() {
@@ -107,9 +113,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 // Add polyline to the map view
                 mapView.add(polyline)
             }
-            
+         exerciseLocations.append(newLocation)
         }
-        
     }
     
     // Draw current route
@@ -162,9 +167,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     if (error == nil)
                     {
                         // Store data into predefined variables
-                        self.steps = data.numberOfSteps as Int?
-                        self.distance = data.distance as Double?
+//                        self.steps = data.numberOfSteps as Int?
+//                        self.distance = data.distance as Double?
                         self.speed = data.currentPace as Double?
+                        self.steps = self.steps! + Int(data.numberOfSteps)
+                        self.distance = self.distance! + Double(data.distance!)
                     }
                     else {
                         print(error!)
@@ -297,7 +304,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             fatalError("Failed to fetch exercise loops: \(error)")
         }
         
-        // Core data saving
+        // Core data saving for ExerciseLoop
         let entity = NSEntityDescription.entity(forEntityName: "ExerciseLoop", in: context)
         let exerciseLoop = NSManagedObject(entity: entity!, insertInto: context)
         exerciseLoop.setValue(currentTime, forKeyPath: "time")
@@ -309,50 +316,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         exerciseLoop.setValue(stepsString, forKeyPath: "steps")
         exerciseLoop.setValue(distanceString, forKeyPath: "distance")
         exerciseLoop.setValue(averageSpeedString, forKeyPath: "averageSpeed")
+        
+        // Core data saving for Location
+        let entity1 = NSEntityDescription.entity(forEntityName: "Location", in: context)
+        let locationArray = NSManagedObject(entity: entity1!, insertInto: context)
+
+        
+        // Loop through
+        for location in exerciseLocations {
+            locationArray.setValue(location.timestamp, forKeyPath: "time")
+            locationArray.setValue(location.coordinate.latitude, forKeyPath: "latitude")
+            locationArray.setValue(location.coordinate.longitude, forKeyPath: "longitude")
+            exerciseLoop.setValue(locationArray, forKeyPath: "location")
+        }
+        
+        // Save to core data
         coreDataModel.saveContext()
         
         // Segue from Map to WorkoutDetail
         self.performSegue(withIdentifier: "MapToWorkoutDetail", sender: nil)
-    }
-    
-    @IBAction func pauseButton(_ sender: UIButton) {
-        // If timer active, pause
-        if (timerActive) {
-            // Stop location updates
-            locationManager.stopUpdatingLocation()
-            
-            // Invalidate timer
-            timer.invalidate()
-            
-            // Stop pedometer
-            //pedometer.stopUpdates()
-            
-            // Calculate time passed
-            timePassed = Date().timeIntervalSinceReferenceDate - startTime
-            
-            // Update button to text, play
-            pauseText.setTitle("|>", for: .normal)
-            
-            // Time not active
-            timerActive = false
-        }
-        // If paused, play
-        else {
-            // Start location updates
-            locationManager.startUpdatingLocation()
-            
-            // Start timer
-            activateTimer()
-            
-            // Activate pedometer
-            //activatePedometer()
-            
-            // Update button to text, pause
-            pauseText.setTitle("| |", for: .normal)
-            
-            // Timer active
-            timerActive = true
-        }
     }
     
     // Memory warnings

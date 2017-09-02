@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		A237AE4C1F4A743000BC54F5 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */; };
 		A237AE621F4D072D00BC54F5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */; };
-		A24E440C1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */; };
-		A24E440D1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */; };
 		A24E44101F574B690026AD5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24E440F1F574B690026AD5A /* CoreLocation.framework */; };
+		A24E44131F5B6CB40026AD5A /* ExerciseLoop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E44111F5B6CB40026AD5A /* ExerciseLoop+CoreDataClass.swift */; };
+		A24E44141F5B6CB40026AD5A /* ExerciseLoop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E44121F5B6CB40026AD5A /* ExerciseLoop+CoreDataProperties.swift */; };
+		A24E441B1F5B6D850026AD5A /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E44191F5B6D850026AD5A /* Location+CoreDataClass.swift */; };
+		A24E441C1F5B6D850026AD5A /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E441A1F5B6D850026AD5A /* Location+CoreDataProperties.swift */; };
 		A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1831F47B23100F0C521 /* CircleButtonView.swift */; };
 		A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1851F47C52B00F0C521 /* MapViewController.swift */; };
 		A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1891F48FA5600F0C521 /* CircleLabelView.swift */; };
@@ -51,9 +53,11 @@
 /* Begin PBXFileReference section */
 		A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
-		A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A24E440F1F574B690026AD5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A24E44111F5B6CB40026AD5A /* ExerciseLoop+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A24E44121F5B6CB40026AD5A /* ExerciseLoop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A24E44191F5B6D850026AD5A /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A24E441A1F5B6D850026AD5A /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A268B1831F47B23100F0C521 /* CircleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		A268B1851F47C52B00F0C521 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A268B1891F48FA5600F0C521 /* CircleLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLabelView.swift; sourceTree = "<group>"; };
@@ -172,8 +176,10 @@
 			isa = PBXGroup;
 			children = (
 				A2F4D1581F4753660079FFF0 /* DigitalDash.xcdatamodeld */,
-				A24E440A1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift */,
-				A24E440B1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift */,
+				A24E44111F5B6CB40026AD5A /* ExerciseLoop+CoreDataClass.swift */,
+				A24E44121F5B6CB40026AD5A /* ExerciseLoop+CoreDataProperties.swift */,
+				A24E44191F5B6D850026AD5A /* Location+CoreDataClass.swift */,
+				A24E441A1F5B6D850026AD5A /* Location+CoreDataProperties.swift */,
 				A268B1991F4A285200F0C521 /* CoreDataModel.swift */,
 			);
 			name = Model;
@@ -357,13 +363,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A24E441B1F5B6D850026AD5A /* Location+CoreDataClass.swift in Sources */,
 				A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */,
-				A24E440D1F5498EA0026AD5A /* ExerciseLoop+CoreDataProperties.swift in Sources */,
-				A24E440C1F5498EA0026AD5A /* ExerciseLoop+CoreDataClass.swift in Sources */,
+				A24E44141F5B6CB40026AD5A /* ExerciseLoop+CoreDataProperties.swift in Sources */,
+				A24E44131F5B6CB40026AD5A /* ExerciseLoop+CoreDataClass.swift in Sources */,
 				A2F4D15A1F4753660079FFF0 /* DigitalDash.xcdatamodeld in Sources */,
 				A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */,
 				A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */,
 				A237AE621F4D072D00BC54F5 /* ResultsTableViewCell.swift in Sources */,
+				A24E441C1F5B6D850026AD5A /* Location+CoreDataProperties.swift in Sources */,
 				A2A8EA161F51F9A40066A2F0 /* WorkoutDetailViewController.swift in Sources */,
 				A268B19A1F4A285200F0C521 /* CoreDataModel.swift in Sources */,
 				A268B1861F47C52B00F0C521 /* MapViewController.swift in Sources */,
