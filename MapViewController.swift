@@ -165,8 +165,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         self.steps = data.numberOfSteps as Int?
                         self.distance = data.distance as Double?
                         self.speed = data.currentPace as Double?
-                        self.averageSpeed = data.averageActivePace as Double?
-                        
                     }
                     else {
                         print(error!)
@@ -196,6 +194,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         return String(format: "%02d:%02d minutes/mile", minutes, seconds)
     }
     
+    // Average speed
+    func averageSpeedCalc(distance: Double, time: Int) -> Double {
+        let averageSpeed = distance / Double(time)
+        return averageSpeed
+    }
+    
     // Update the timer
     func updateTimer() {
         // Calculate current time
@@ -220,16 +224,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let seconds = Int(time) % 60
         return String(format:"%02d:%02d:%02d", hours, minutes, seconds)
     }
-
-    // Reset the timer
-    func clearTimer() {
-        timer.invalidate()
-        startTime = 0.0
-        currentTime = 0.0
-        timePassed = 0.0
-        timerActive = false
-    }
-    
     
     // Stop the timer
     @IBAction func stopTimer(_ sender: UIButton) {
@@ -264,8 +258,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         else {
             distanceString = "0"
         }
-        if (self.averageSpeed != nil) {
-            averageSpeedString = self.minutesPerMile(pace: self.averageSpeed!)
+        if (self.distance != nil || self.currentTime != 0) {
+            averageSpeed = averageSpeedCalc(distance: distance!, time: Int(currentTime))
+            if (self.averageSpeed != nil) {
+                averageSpeedString = String(describing: self.minutesPerMile(pace: self.averageSpeed!))
+            }
+            else {
+                averageSpeedString = "0"
+            }
         }
         else {
             averageSpeedString = "0"
@@ -324,6 +324,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             // Invalidate timer
             timer.invalidate()
             
+            // Stop pedometer
+            //pedometer.stopUpdates()
+            
             // Calculate time passed
             timePassed = Date().timeIntervalSinceReferenceDate - startTime
             
@@ -340,6 +343,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             // Start timer
             activateTimer()
+            
+            // Activate pedometer
+            //activatePedometer()
             
             // Update button to text, pause
             pauseText.setTitle("| |", for: .normal)
