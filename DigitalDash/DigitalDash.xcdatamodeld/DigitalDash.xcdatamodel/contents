@@ -10,16 +10,8 @@
         <attribute name="startHours" attributeType="String" syncable="YES"/>
         <attribute name="steps" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="location" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Location" inverseName="exerciseLoop" inverseEntity="Location" syncable="YES"/>
-    </entity>
-    <entity name="Location" representedClassName="Location" syncable="YES">
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="exerciseLoop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseLoop" inverseName="location" inverseEntity="ExerciseLoop" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ExerciseLoop" positionX="-144" positionY="-27" width="128" height="195"/>
-        <element name="Location" positionX="-144" positionY="45" width="128" height="105"/>
+        <element name="ExerciseLoop" positionX="-144" positionY="-27" width="128" height="180"/>
     </elements>
 </model>

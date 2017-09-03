@@ -56,7 +56,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var steps: Int? = 0
     var distance: Double? = 0.0
     var averageSpeed: Double? = 0.0
-    var exerciseLocations: [CLLocation] = []
     
     // Load view
     override func viewDidLoad() {
@@ -111,7 +110,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 // Add polyline to the map view
                 mapView.add(polyline)
             }
-         exerciseLocations.append(newLocation)
         }
     }
     
@@ -312,21 +310,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             fatalError("Failed to fetch exercise loops: \(error)")
         }
         
-        // Core data saving for Location
-        let entity1 = NSEntityDescription.entity(forEntityName: "Location", in: context)
-        let locationArray = NSManagedObject(entity: entity1!, insertInto: context)
-        
         // Core data saving for ExerciseLoop
         let entity = NSEntityDescription.entity(forEntityName: "ExerciseLoop", in: context)
         let exerciseLoop = NSManagedObject(entity: entity!, insertInto: context)
-        
-        // Loop through
-        for location in exerciseLocations {
-            locationArray.setValue(location.timestamp, forKeyPath: "time")
-            locationArray.setValue(location.coordinate.latitude, forKeyPath: "latitude")
-            locationArray.setValue(location.coordinate.longitude, forKeyPath: "longitude")
-            exerciseLoop.setValue(NSOrderedSet(object: locationArray), forKeyPath: "location")
-        }
         
         // Set values to
         exerciseLoop.setValue(currentTime, forKeyPath: "time")
@@ -338,8 +324,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         exerciseLoop.setValue(stepsString, forKeyPath: "steps")
         exerciseLoop.setValue(distanceString, forKeyPath: "distance")
         exerciseLoop.setValue(averageSpeedString, forKeyPath: "averageSpeed")
-        
-        locationArray.setValue(exerciseLoop, forKey: "exerciseLoop")
         
         // Save to core data
         coreDataModel.saveContext()

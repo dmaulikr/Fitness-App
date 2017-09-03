@@ -187,18 +187,18 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r0S-P2-5wZ" id="CJg-Tv-0gh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DfN-3D-FOI">
-                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sEO-zB-10E">
-                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -332,9 +332,6 @@
                                 <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1V9-rK-6Nx">
-                                <rect key="frame" x="12" y="400.5" width="350" height="246.5"/>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijo-Oq-kwX" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
                                 <rect key="frame" x="100" y="18" width="175" height="35"/>
                                 <color key="backgroundColor" red="0.37158924829661116" green="0.36384780562376512" blue="0.37933069096945726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -348,7 +345,6 @@
                             <constraint firstItem="VpJ-zt-lrx" firstAttribute="trailing" secondItem="HHL-RE-486" secondAttribute="trailing" id="0aY-Hc-iaA"/>
                             <constraint firstItem="lWg-2c-1ut" firstAttribute="baseline" secondItem="VpJ-zt-lrx" secondAttribute="firstBaseline" id="3tQ-dg-InC"/>
                             <constraint firstItem="Jhf-hn-IgF" firstAttribute="top" secondItem="F7n-PA-7RW" secondAttribute="bottom" constant="8" symbolic="YES" id="6iT-6e-eh3"/>
-                            <constraint firstItem="YuY-To-6B9" firstAttribute="trailing" secondItem="1V9-rK-6Nx" secondAttribute="trailing" id="8uB-c2-DNK"/>
                             <constraint firstItem="Jhf-hn-IgF" firstAttribute="trailing" secondItem="Mlk-ZE-cW4" secondAttribute="trailing" id="Awd-WX-3ey"/>
                             <constraint firstItem="HHL-RE-486" firstAttribute="centerX" secondItem="b6I-3D-3Th" secondAttribute="centerX" id="BC5-Za-HdY"/>
                             <constraint firstItem="F7n-PA-7RW" firstAttribute="leading" secondItem="Jhf-hn-IgF" secondAttribute="leading" id="CWu-vk-O7h"/>
@@ -359,7 +355,6 @@
                             <constraint firstItem="VpJ-zt-lrx" firstAttribute="baseline" secondItem="Ijo-Oq-kwX" secondAttribute="firstBaseline" id="N3U-me-y1Z"/>
                             <constraint firstItem="lWg-2c-1ut" firstAttribute="leading" secondItem="HHL-RE-486" secondAttribute="leading" id="Nfp-Uy-ciq"/>
                             <constraint firstItem="e2a-cq-8pd" firstAttribute="trailing" secondItem="C4i-Wb-TCm" secondAttribute="trailing" id="Qm1-t4-fb5"/>
-                            <constraint firstAttribute="bottom" secondItem="1V9-rK-6Nx" secondAttribute="bottom" constant="20" symbolic="YES" id="REG-QH-I8N"/>
                             <constraint firstItem="YuY-To-6B9" firstAttribute="top" secondItem="C4i-Wb-TCm" secondAttribute="bottom" constant="8" symbolic="YES" id="RjG-OQ-Mrp"/>
                             <constraint firstItem="C4i-Wb-TCm" firstAttribute="trailing" secondItem="YuY-To-6B9" secondAttribute="trailing" id="T5j-cP-9Ae"/>
                             <constraint firstItem="F7n-PA-7RW" firstAttribute="top" secondItem="HHL-RE-486" secondAttribute="bottom" constant="8" symbolic="YES" id="T8i-a0-Raw"/>
@@ -369,9 +364,7 @@
                             <constraint firstItem="HHL-RE-486" firstAttribute="top" secondItem="lWg-2c-1ut" secondAttribute="bottom" constant="32" id="YwX-PC-QLg"/>
                             <constraint firstItem="C4i-Wb-TCm" firstAttribute="leading" secondItem="YuY-To-6B9" secondAttribute="leading" id="Z7h-3E-ie6"/>
                             <constraint firstItem="VpJ-zt-lrx" firstAttribute="baseline" secondItem="lWg-2c-1ut" secondAttribute="firstBaseline" id="Z8F-1l-UYZ"/>
-                            <constraint firstItem="YuY-To-6B9" firstAttribute="leading" secondItem="1V9-rK-6Nx" secondAttribute="leading" id="au1-iz-SYN"/>
                             <constraint firstItem="e2a-cq-8pd" firstAttribute="leading" secondItem="C4i-Wb-TCm" secondAttribute="leading" id="cpt-qK-6QZ"/>
-                            <constraint firstItem="1V9-rK-6Nx" firstAttribute="top" secondItem="YuY-To-6B9" secondAttribute="bottom" constant="25" id="dDd-mG-AKZ"/>
                             <constraint firstItem="C4i-Wb-TCm" firstAttribute="top" secondItem="e2a-cq-8pd" secondAttribute="bottom" constant="8" symbolic="YES" id="g04-eC-PE0"/>
                             <constraint firstItem="F7n-PA-7RW" firstAttribute="trailing" secondItem="Jhf-hn-IgF" secondAttribute="trailing" id="jU1-0K-v6A"/>
                             <constraint firstItem="Ijo-Oq-kwX" firstAttribute="centerY" secondItem="VpJ-zt-lrx" secondAttribute="centerY" id="kBF-pe-Qy9"/>
@@ -392,7 +385,6 @@
                         <outlet property="distanceLabel" destination="C4i-Wb-TCm" id="bsN-LR-9BW"/>
                         <outlet property="endHoursLabel" destination="Jhf-hn-IgF" id="jGj-vK-dvl"/>
                         <outlet property="exerciseIDLabel" destination="Ijo-Oq-kwX" id="hlq-Pu-k0G"/>
-                        <outlet property="mapView" destination="1V9-rK-6Nx" id="Z5m-5S-LZc"/>
                         <outlet property="startHoursLabel" destination="F7n-PA-7RW" id="dDx-cG-Nif"/>
                         <outlet property="stepsLabel" destination="e2a-cq-8pd" id="5h7-j1-F1v"/>
                         <outlet property="timeLabel" destination="Mlk-ZE-cW4" id="nXV-a8-Aq6"/>
