@@ -247,40 +247,8 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="WorkoutDetailToHome" id="hw0-QC-qaG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHL-RE-486" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="12" y="121" width="350" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7n-PA-7RW" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="12" y="164" width="350" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhf-hn-IgF" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="12" y="207" width="350" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlk-ZE-cW4" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="12" y="250" width="350" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijo-Oq-kwX" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="120" y="53" width="135" height="35"/>
+                                <rect key="frame" x="120" y="17" width="135" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.37158924829661116" green="0.36384780562376512" blue="0.37933069096945726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -299,8 +267,40 @@
                                     <segue destination="eG3-YY-uZ5" kind="show" identifier="WorkoutDetailToResults" id="873-6j-o2y"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHL-RE-486" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="12" y="82" width="350" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7n-PA-7RW" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="12" y="125" width="350" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhf-hn-IgF" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="12" y="168" width="350" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlk-ZE-cW4" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
+                                <rect key="frame" x="12" y="211" width="350" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2a-cq-8pd" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="12" y="293" width="350" height="35"/>
+                                <rect key="frame" x="12" y="254" width="350" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -308,7 +308,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-Wb-TCm" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="12" y="336" width="350" height="35"/>
+                                <rect key="frame" x="12" y="297" width="350" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -316,13 +316,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuY-To-6B9" customClass="CircleLabelView" customModule="DigitalDash" customModuleProvider="target">
-                                <rect key="frame" x="12" y="379" width="350" height="35"/>
+                                <rect key="frame" x="12" y="340" width="350" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.37158924830000001" green="0.36384780560000002" blue="0.379330691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.87831719760000004" green="1" blue="0.17005314590000001" alpha="0.72414172539999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1V9-rK-6Nx">
+                                <rect key="frame" x="12" y="400" width="350" height="247"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -333,6 +337,7 @@
                         <outlet property="distanceLabel" destination="C4i-Wb-TCm" id="bsN-LR-9BW"/>
                         <outlet property="endHoursLabel" destination="Jhf-hn-IgF" id="jGj-vK-dvl"/>
                         <outlet property="exerciseIDLabel" destination="Ijo-Oq-kwX" id="hlq-Pu-k0G"/>
+                        <outlet property="mapView" destination="1V9-rK-6Nx" id="Z5m-5S-LZc"/>
                         <outlet property="startHoursLabel" destination="F7n-PA-7RW" id="dDx-cG-Nif"/>
                         <outlet property="stepsLabel" destination="e2a-cq-8pd" id="5h7-j1-F1v"/>
                         <outlet property="timeLabel" destination="Mlk-ZE-cW4" id="nXV-a8-Aq6"/>
@@ -350,6 +355,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="hw0-QC-qaG"/>
         <segue reference="d1K-7j-RmM"/>
-        <segue reference="JKA-Di-qJT"/>
+        <segue reference="873-6j-o2y"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import CoreData
+import MapKit
 
-class WorkoutDetailViewController: UIViewController {
+class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     // IBOutlet
     @IBOutlet weak var exerciseIDLabel: UILabel!
@@ -21,12 +22,17 @@ class WorkoutDetailViewController: UIViewController {
     @IBOutlet weak var stepsLabel: CircleLabelView!
     @IBOutlet weak var distanceLabel: CircleLabelView!
     @IBOutlet weak var averageSpeedLabel: CircleLabelView!
+    @IBOutlet weak var mapView: MKMapView!
     
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
     
+    // ExerciseLoop variable
+    var exerciseLoop: ExerciseLoop!
+    
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
+    var locations: [Location] = []
     var result: NSManagedObject?
     
     
@@ -34,7 +40,11 @@ class WorkoutDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        // Start mapView updates
+        mapView.delegate = self
+        mapView.showsUserLocation = false
+        mapView.mapType = MKMapType.standard
+        mapView.addOverlays(drawPolyline())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,11 +85,48 @@ class WorkoutDetailViewController: UIViewController {
             stepsLabel.text = " Steps: " + String(describing: result!.value(forKeyPath: "steps")!)
             distanceLabel.text = " Distance: " + String(describing: result!.value(forKeyPath: "distance")!) + " miles"
             averageSpeedLabel.text = " Average Speed: " + String(describing: result!.value(forKeyPath: "averageSpeed")!)
+            
+            locations = [result!.value(forKeyPath: "location")! as! Location]
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }
-
         
+    }
+    
+    // Draw polyline
+    func drawPolyline() -> [MKPolyline] {
+        var coordinates: [(CLLocation, CLLocation)] = []
+        
+        // 2
+        for (first, second) in zip(locations, locations.dropFirst()) {
+            var start: CLLocation? = nil
+            var end: CLLocation? = nil
+            start = CLLocation(latitude: first.latitude, longitude: first.longitude)
+            end = CLLocation(latitude: second.latitude, longitude: second.longitude)
+            coordinates.append((start!, end!))
+        }
+        
+        //5
+        var polylines: [MKPolyline] = []
+        for (start, end) in coordinates {
+            let coords = [start.coordinate, end.coordinate]
+            let polyline = MKPolyline(coordinates: coords, count: 2)
+            polylines.append(polyline)
+        }
+        return polylines
+    }
+    
+    //
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // Overlay is a polyline
+        if (overlay is MKPolyline) {
+            // Draw polyline with renderer as red line
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.red
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
     }
     
     // Convert timer from Int to String

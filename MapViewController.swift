@@ -56,8 +56,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var steps: Int? = 0
     var distance: Double? = 0.0
     var averageSpeed: Double? = 0.0
-    var pausedSteps: Int? = 0
-    var pausedDistance: Double? = 0.0
     var exerciseLocations: [CLLocation] = []
     
     // Load view
@@ -170,8 +168,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //                        self.steps = data.numberOfSteps as Int?
 //                        self.distance = data.distance as Double?
                         self.speed = data.currentPace as Double?
-                        self.steps = self.steps! + Int(data.numberOfSteps)
-                        self.distance = self.distance! + Double(data.distance!)
+                        if (self.steps != nil) {
+                            self.steps = self.steps! + Int(data.numberOfSteps)
+                        }
+                        else {
+                            self.steps = data.numberOfSteps as Int?
+                        }
+                        if (self.distance != nil) {
+                            self.distance = self.distance! + Double(data.distance!)
+                        }
+                        else {
+                            self.distance = data.distance as Double?
+                        }
                     }
                     else {
                         print(error!)
@@ -328,6 +336,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationArray.setValue(location.coordinate.latitude, forKeyPath: "latitude")
             locationArray.setValue(location.coordinate.longitude, forKeyPath: "longitude")
             exerciseLoop.setValue(locationArray, forKeyPath: "location")
+            print("\(location)")
         }
         
         // Save to core data
