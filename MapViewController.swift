@@ -312,9 +312,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             fatalError("Failed to fetch exercise loops: \(error)")
         }
         
+        // Core data saving for Location
+        let entity1 = NSEntityDescription.entity(forEntityName: "Location", in: context)
+        let locationArray = NSManagedObject(entity: entity1!, insertInto: context)
+        
         // Core data saving for ExerciseLoop
         let entity = NSEntityDescription.entity(forEntityName: "ExerciseLoop", in: context)
         let exerciseLoop = NSManagedObject(entity: entity!, insertInto: context)
+        
+        // Loop through
+        for location in exerciseLocations {
+            locationArray.setValue(location.timestamp, forKeyPath: "time")
+            locationArray.setValue(location.coordinate.latitude, forKeyPath: "latitude")
+            locationArray.setValue(location.coordinate.longitude, forKeyPath: "longitude")
+            exerciseLoop.setValue(NSOrderedSet(object: locationArray), forKeyPath: "location")
+        }
+        
+        // Set values to
         exerciseLoop.setValue(currentTime, forKeyPath: "time")
         exerciseLoop.setValue(startHours, forKeyPath: "startHours")
         exerciseLoop.setValue(endHours, forKeyPath: "endHours")
@@ -325,19 +339,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         exerciseLoop.setValue(distanceString, forKeyPath: "distance")
         exerciseLoop.setValue(averageSpeedString, forKeyPath: "averageSpeed")
         
-        // Core data saving for Location
-        let entity1 = NSEntityDescription.entity(forEntityName: "Location", in: context)
-        let locationArray = NSManagedObject(entity: entity1!, insertInto: context)
-
-        
-        // Loop through
-        for location in exerciseLocations {
-            locationArray.setValue(location.timestamp, forKeyPath: "time")
-            locationArray.setValue(location.coordinate.latitude, forKeyPath: "latitude")
-            locationArray.setValue(location.coordinate.longitude, forKeyPath: "longitude")
-            exerciseLoop.setValue(locationArray, forKeyPath: "location")
-            print("\(location)")
-        }
+        locationArray.setValue(exerciseLoop, forKey: "exerciseLoop")
         
         // Save to core data
         coreDataModel.saveContext()

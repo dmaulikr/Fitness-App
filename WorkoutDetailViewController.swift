@@ -33,8 +33,10 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
     
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
-    var locations: [Location] = []
     var result: NSManagedObject?
+    var locations: NSMutableOrderedSet?
+    var result1: NSManagedObject?
+    //var locations: NSOrderedSet?
     
     
     // Load view
@@ -82,16 +84,49 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
             distanceLabel.text = " Distance: " + String(describing: result!.value(forKeyPath: "distance")!) + " miles"
             averageSpeedLabel.text = " Average Speed: " + String(describing: result!.value(forKeyPath: "averageSpeed")!)
             
-            locations = [result!.value(forKeyPath: "location")! as! Location]
             
-            // Start mapView updates
-            mapView.delegate = self
-            mapView.showsUserLocation = false
-            mapView.mapType = MKMapType.standard
-            drawPolyline()
+            //locations = NSOrderedSet(object: result!.value(forKeyPath: "location")!)
+            
+            locations = result?.mutableOrderedSetValue(forKeyPath: "location")
+            
+            for index in locations! {
+                print("\((index as! Location).value(forKeyPath: "latitude"))")
+            }
+            
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }
+        
+//        let fetchRequest1 = NSFetchRequest<NSManagedObject>(entityName: "Location")
+//        let sortDescriptorDate1 = NSSortDescriptor(key: "time", ascending: false,
+//                                                  selector: #selector(NSString.localizedStandardCompare))
+//        fetchRequest1.sortDescriptors = [sortDescriptorDate1]
+//        
+//        // try to fetch ExerciseLoop context from data model and store in results array
+//        do {
+//            locations = try context.fetch(fetchRequest1) as! [Location]
+//            
+//            if (resultsToWorkoutDetail) {
+//                result1 = self.locations[rowClicked!]
+//                resultsToWorkoutDetail = false
+//            }
+//            else {
+//                result1 = self.locations[0]
+//            }
+//            
+//            for index in locations {
+//                print("\(index)")
+//            }
+//           
+//        } catch {
+//            fatalError("Failed to fetch exercise loops: \(error)")
+//        }
+
+        // Start mapView updates
+        mapView.delegate = self
+        mapView.showsUserLocation = false
+        mapView.mapType = MKMapType.standard
+        drawPolyline()
         
     }
     
@@ -117,13 +152,46 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
 //        }
 //        return polylines
         
+//        var coordinates: [(CLLocation, CLLocation)] = []
+//        var start: CLLocation? = nil
+//        var end: CLLocation? = nil
+//        
+//        if (locations != nil) {
+//            for newLocation in locations! {
+//                var index = (locations?.index(of: newLocation))!
+//                if (index == 0) {
+//                    continue
+//                }
+//                else {
+//                    index -= 1
+//                    let oldLocation = locations?.object(at: index)
+//                    start = CLLocation(latitude: (oldLocation as! Location).latitude, longitude: (oldLocation as! Location).longitude)
+//                    end = CLLocation(latitude: (newLocation as! Location).latitude, longitude: (newLocation as! Location).longitude)
+//                    coordinates.append((start!, end!))
+//                    let regionCoord = CLLocationCoordinate2DMake((oldLocation as! Location).latitude, (oldLocation as! Location).longitude)
+//                    mapView.setRegion(MKCoordinateRegionMake(regionCoord, MKCoordinateSpanMake(0.01, 0.01)), animated: true)
+//                    print("\(coordinates)")
+//                }
+//            }
+//        }
+//        
+//        var polylines: [MKPolyline] = []
+//        for (start, end) in coordinates {
+//            let coords = [start.coordinate, end.coordinate]
+//            let polyline = MKPolyline(coordinates: coords, count: 2)
+//            polylines.append(polyline)
+//        }
+//        return polylines
+        
         // Loop through locations
-        for newLocation in locations {
+        for newLocation in locations! {
             // Set old location to the last location in array
-            if let oldLocation = locations.last {
+            let index = locations?.index(of: newLocation)
+            if (index! > 0) {
+                let oldLocation = locations?[index! - 1]
                 // Store coordinates of old and new location
-                let oldLocationCoord = CLLocationCoordinate2D(latitude: oldLocation.latitude, longitude: oldLocation.longitude)
-                let newLocationCoord = CLLocationCoordinate2D(latitude: newLocation.latitude, longitude: newLocation.longitude)
+                let oldLocationCoord = CLLocationCoordinate2D(latitude: (oldLocation as! Location).latitude, longitude: (oldLocation as! Location).longitude)
+                let newLocationCoord = CLLocationCoordinate2D(latitude: (newLocation as! Location).latitude, longitude: (newLocation as! Location).longitude)
                 let coordinates = [oldLocationCoord, newLocationCoord]
                 mapView.setRegion(MKCoordinateRegionMake(oldLocationCoord, MKCoordinateSpanMake(0.01, 0.01)), animated: true)
                 print("\(coordinates)")

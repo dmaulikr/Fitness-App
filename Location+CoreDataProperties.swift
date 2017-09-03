@@ -2,7 +2,7 @@
 //  Location+CoreDataProperties.swift
 //  DigitalDash
 //
-//  Created by Nicholas Blackburn on 9/2/17.
+//  Created by Nicholas Blackburn on 9/3/17.
 //  Copyright © 2017 Nicholas Blackburn. All rights reserved.
 //
 
