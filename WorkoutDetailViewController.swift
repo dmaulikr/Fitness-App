@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 import MapKit
+import CoreLocation
 
 class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -40,11 +41,6 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // Start mapView updates
-        mapView.delegate = self
-        mapView.showsUserLocation = false
-        mapView.mapType = MKMapType.standard
-        mapView.addOverlays(drawPolyline())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +83,12 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
             averageSpeedLabel.text = " Average Speed: " + String(describing: result!.value(forKeyPath: "averageSpeed")!)
             
             locations = [result!.value(forKeyPath: "location")! as! Location]
+            
+            // Start mapView updates
+            mapView.delegate = self
+            mapView.showsUserLocation = false
+            mapView.mapType = MKMapType.standard
+            drawPolyline()
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }
@@ -94,26 +96,44 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
     }
     
     // Draw polyline
-    func drawPolyline() -> [MKPolyline] {
-        var coordinates: [(CLLocation, CLLocation)] = []
+    func drawPolyline() {
+//        var coordinates: [(CLLocation, CLLocation)] = []
+//        
+//        // 2
+//        for (first, second) in zip(locations, locations.dropFirst()) {
+//            var start: CLLocation? = nil
+//            var end: CLLocation? = nil
+//            start = CLLocation(latitude: first.latitude, longitude: first.longitude)
+//            end = CLLocation(latitude: second.latitude, longitude: second.longitude)
+//            coordinates.append((start!, end!))
+//        }
+//        
+//        //5
+//        var polylines: [MKPolyline] = []
+//        for (start, end) in coordinates {
+//            let coords = [start.coordinate, end.coordinate]
+//            let polyline = MKPolyline(coordinates: coords, count: 2)
+//            polylines.append(polyline)
+//        }
+//        return polylines
         
-        // 2
-        for (first, second) in zip(locations, locations.dropFirst()) {
-            var start: CLLocation? = nil
-            var end: CLLocation? = nil
-            start = CLLocation(latitude: first.latitude, longitude: first.longitude)
-            end = CLLocation(latitude: second.latitude, longitude: second.longitude)
-            coordinates.append((start!, end!))
+        // Loop through locations
+        for newLocation in locations {
+            // Set old location to the last location in array
+            if let oldLocation = locations.last {
+                // Store coordinates of old and new location
+                let oldLocationCoord = CLLocationCoordinate2D(latitude: oldLocation.latitude, longitude: oldLocation.longitude)
+                let newLocationCoord = CLLocationCoordinate2D(latitude: newLocation.latitude, longitude: newLocation.longitude)
+                let coordinates = [oldLocationCoord, newLocationCoord]
+                mapView.setRegion(MKCoordinateRegionMake(oldLocationCoord, MKCoordinateSpanMake(0.01, 0.01)), animated: true)
+                print("\(coordinates)")
+                // Assign polyline to the coordinates
+                let polyline = MKPolyline(coordinates: coordinates, count: 2)
+                // Add polyline to the map view
+                mapView.add(polyline)
+            }
         }
-        
-        //5
-        var polylines: [MKPolyline] = []
-        for (start, end) in coordinates {
-            let coords = [start.coordinate, end.coordinate]
-            let polyline = MKPolyline(coordinates: coords, count: 2)
-            polylines.append(polyline)
-        }
-        return polylines
+
     }
     
     //
