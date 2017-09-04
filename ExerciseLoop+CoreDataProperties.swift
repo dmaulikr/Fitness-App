@@ -12,10 +12,6 @@ import CoreData
 
 extension ExerciseLoop {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ExerciseLoop> {
-        return NSFetchRequest<ExerciseLoop>(entityName: "ExerciseLoop");
-    }
-
     @NSManaged public var averageSpeed: String?
     @NSManaged public var date: String?
     @NSManaged public var dateShort: String?
@@ -25,5 +21,6 @@ extension ExerciseLoop {
     @NSManaged public var startHours: String?
     @NSManaged public var steps: String?
     @NSManaged public var time: Int16
+    @NSManaged public var locationPoints: NSArray?
 
 }

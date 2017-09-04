@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A210565F1F5CE30500B862AB /* ExerciseLoop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A210565D1F5CE30500B862AB /* ExerciseLoop+CoreDataClass.swift */; };
+		A21056601F5CE30500B862AB /* ExerciseLoop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A210565E1F5CE30500B862AB /* ExerciseLoop+CoreDataProperties.swift */; };
 		A237AE4C1F4A743000BC54F5 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */; };
 		A237AE621F4D072D00BC54F5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */; };
 		A24E44101F574B690026AD5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24E440F1F574B690026AD5A /* CoreLocation.framework */; };
@@ -18,8 +20,6 @@
 		A268B1961F4951E300F0C521 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = A268B1951F4951E300F0C521 /* title.png */; };
 		A268B19A1F4A285200F0C521 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268B1991F4A285200F0C521 /* CoreDataModel.swift */; };
 		A2A8EA161F51F9A40066A2F0 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A8EA151F51F9A40066A2F0 /* WorkoutDetailViewController.swift */; };
-		A2E99FC11F5CC60E001E4961 /* ExerciseLoop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E99FBF1F5CC60E001E4961 /* ExerciseLoop+CoreDataClass.swift */; };
-		A2E99FC21F5CC60E001E4961 /* ExerciseLoop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E99FC01F5CC60E001E4961 /* ExerciseLoop+CoreDataProperties.swift */; };
 		A2F4D1521F4753660079FFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1511F4753660079FFF0 /* AppDelegate.swift */; };
 		A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D1531F4753660079FFF0 /* MainViewController.swift */; };
 		A2F4D1571F4753660079FFF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F4D1551F4753660079FFF0 /* Main.storyboard */; };
@@ -50,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A210565D1F5CE30500B862AB /* ExerciseLoop+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A210565E1F5CE30500B862AB /* ExerciseLoop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A237AE4B1F4A743000BC54F5 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A237AE611F4D072D00BC54F5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		A24E440F1F574B690026AD5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -61,8 +63,6 @@
 		A268B1951F4951E300F0C521 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		A268B1991F4A285200F0C521 /* CoreDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		A2A8EA151F51F9A40066A2F0 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
-		A2E99FBF1F5CC60E001E4961 /* ExerciseLoop+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A2E99FC01F5CC60E001E4961 /* ExerciseLoop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseLoop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A2F4D14E1F4753660079FFF0 /* DigitalDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F4D1511F4753660079FFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F4D1531F4753660079FFF0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = DigitalDash/MainViewController.swift; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				A2F4D1581F4753660079FFF0 /* DigitalDash.xcdatamodeld */,
-				A2E99FBF1F5CC60E001E4961 /* ExerciseLoop+CoreDataClass.swift */,
-				A2E99FC01F5CC60E001E4961 /* ExerciseLoop+CoreDataProperties.swift */,
+				A210565D1F5CE30500B862AB /* ExerciseLoop+CoreDataClass.swift */,
+				A210565E1F5CE30500B862AB /* ExerciseLoop+CoreDataProperties.swift */,
 				A268B1991F4A285200F0C521 /* CoreDataModel.swift */,
 			);
 			name = Model;
@@ -365,8 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2F4D1541F4753660079FFF0 /* MainViewController.swift in Sources */,
-				A2E99FC21F5CC60E001E4961 /* ExerciseLoop+CoreDataProperties.swift in Sources */,
-				A2E99FC11F5CC60E001E4961 /* ExerciseLoop+CoreDataClass.swift in Sources */,
+				A21056601F5CE30500B862AB /* ExerciseLoop+CoreDataProperties.swift in Sources */,
+				A210565F1F5CE30500B862AB /* ExerciseLoop+CoreDataClass.swift in Sources */,
 				A2F4D15A1F4753660079FFF0 /* DigitalDash.xcdatamodeld in Sources */,
 				A268B1841F47B23100F0C521 /* CircleButtonView.swift in Sources */,
 				A268B18A1F48FA5600F0C521 /* CircleLabelView.swift in Sources */,

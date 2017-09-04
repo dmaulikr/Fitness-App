@@ -23,12 +23,15 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
     @IBOutlet weak var stepsLabel: CircleLabelView!
     @IBOutlet weak var distanceLabel: CircleLabelView!
     @IBOutlet weak var averageSpeedLabel: CircleLabelView!
+    @IBOutlet weak var mapView: MKMapView!
     
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
     
     // ExerciseLoop variable
     //var exerciseLoop: ExerciseLoop!
+    
+    var exerciseLocations: [CLLocation] = []
     
     // Declare array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
@@ -80,11 +83,102 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
             distanceLabel.text = " Distance: " + String(describing: result!.value(forKeyPath: "distance")!) + " miles"
             averageSpeedLabel.text = " Average Speed: " + String(describing: result!.value(forKeyPath: "averageSpeed")!)
             
+            exerciseLocations = result!.value(forKeyPath: "locationPoints") as! [CLLocation]
             
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }
         
+        mapView.delegate = self
+        mapView.showsUserLocation = false
+        mapView.mapType = MKMapType.standard
+        drawPolyline()
+        
+    }
+    
+    func drawPolyline() {
+        //        var coordinates: [(CLLocation, CLLocation)] = []
+        //
+        //        // 2
+        //        for (first, second) in zip(locations, locations.dropFirst()) {
+        //            var start: CLLocation? = nil
+        //            var end: CLLocation? = nil
+        //            start = CLLocation(latitude: first.latitude, longitude: first.longitude)
+        //            end = CLLocation(latitude: second.latitude, longitude: second.longitude)
+        //            coordinates.append((start!, end!))
+        //        }
+        //
+        //        //5
+        //        var polylines: [MKPolyline] = []
+        //        for (start, end) in coordinates {
+        //            let coords = [start.coordinate, end.coordinate]
+        //            let polyline = MKPolyline(coordinates: coords, count: 2)
+        //            polylines.append(polyline)
+        //        }
+        //        return polylines
+        
+        //        var coordinates: [(CLLocation, CLLocation)] = []
+        //        var start: CLLocation? = nil
+        //        var end: CLLocation? = nil
+        //
+        //        if (locations != nil) {
+        //            for newLocation in locations! {
+        //                var index = (locations?.index(of: newLocation))!
+        //                if (index == 0) {
+        //                    continue
+        //                }
+        //                else {
+        //                    index -= 1
+        //                    let oldLocation = locations?.object(at: index)
+        //                    start = CLLocation(latitude: (oldLocation as! Location).latitude, longitude: (oldLocation as! Location).longitude)
+        //                    end = CLLocation(latitude: (newLocation as! Location).latitude, longitude: (newLocation as! Location).longitude)
+        //                    coordinates.append((start!, end!))
+        //                    let regionCoord = CLLocationCoordinate2DMake((oldLocation as! Location).latitude, (oldLocation as! Location).longitude)
+        //                    mapView.setRegion(MKCoordinateRegionMake(regionCoord, MKCoordinateSpanMake(0.01, 0.01)), animated: true)
+        //                    print("\(coordinates)")
+        //                }
+        //            }
+        //        }
+        //
+        //        var polylines: [MKPolyline] = []
+        //        for (start, end) in coordinates {
+        //            let coords = [start.coordinate, end.coordinate]
+        //            let polyline = MKPolyline(coordinates: coords, count: 2)
+        //            polylines.append(polyline)
+        //        }
+        //        return polylines
+        
+        // Loop through locations
+        for (index, _) in exerciseLocations.enumerated() {
+            // Set old location to the last location in array
+            if (index > 0) {
+                let oldLocation = exerciseLocations[index - 1].coordinate
+                let newLocation = exerciseLocations[index].coordinate
+                // Store coordinates of old and new location
+                let oldLocationCoord = oldLocation
+                let newLocationCoord = newLocation
+                let coordinates = [oldLocationCoord, newLocationCoord]
+                mapView.setRegion(MKCoordinateRegionMake(oldLocationCoord, MKCoordinateSpanMake(0.01, 0.01)), animated: true)
+                print("\(coordinates)")
+                // Assign polyline to the coordinates
+                let polyline = MKPolyline(coordinates: coordinates, count: 2)
+                // Add polyline to the map view
+                mapView.add(polyline)
+            }
+        }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // Overlay is a polyline
+        if (overlay is MKPolyline) {
+            // Draw polyline with renderer as red line
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.red
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
     }
     
     // Convert timer from Int to String

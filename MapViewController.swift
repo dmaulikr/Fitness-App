@@ -56,6 +56,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var steps: Int? = 0
     var distance: Double? = 0.0
     var averageSpeed: Double? = 0.0
+    var exerciseLocations: [CLLocation] = []
     
     // Load view
     override func viewDidLoad() {
@@ -110,6 +111,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 // Add polyline to the map view
                 mapView.add(polyline)
             }
+            exerciseLocations.append(newLocation)
         }
     }
     
@@ -324,6 +326,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         exerciseLoop.setValue(stepsString, forKeyPath: "steps")
         exerciseLoop.setValue(distanceString, forKeyPath: "distance")
         exerciseLoop.setValue(averageSpeedString, forKeyPath: "averageSpeed")
+        exerciseLoop.setValue(exerciseLocations, forKey: "locationPoints")
         
         // Save to core data
         coreDataModel.saveContext()
