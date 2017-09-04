@@ -49,10 +49,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var currentDate: String?
     
     // Declare motion variables
-//    var steps: Int? = nil
-//    var distance: Double? = nil
-    var speed: Double? = nil
-//    var averageSpeed: Double? = nil
     var steps: Int? = 0
     var distance: Double? = 0.0
     var averageSpeed: Double? = 0.0
@@ -61,7 +57,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         // Start mapView updates
         mapView.delegate = self
@@ -100,7 +95,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // Track location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Loop through locations
+        // Loop through locations each time location manager updates
         for newLocation in locations {
             // Set old location to the last location in array
             if let oldLocation = locations.last {
@@ -111,6 +106,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 // Add polyline to the map view
                 mapView.add(polyline)
             }
+            // Add the new location to the exerciseLocations array
             exerciseLocations.append(newLocation)
         }
     }
@@ -165,21 +161,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     if (error == nil)
                     {
                         // Store data into predefined variables
-//                        self.steps = data.numberOfSteps as Int?
-//                        self.distance = data.distance as Double?
-                        self.speed = data.currentPace as Double?
-                        if (self.steps != nil) {
-                            self.steps = self.steps! + Int(data.numberOfSteps)
-                        }
-                        else {
-                            self.steps = data.numberOfSteps as Int?
-                        }
-                        if (self.distance != nil) {
-                            self.distance = self.distance! + Double(data.distance!)
-                        }
-                        else {
-                            self.distance = data.distance as Double?
-                        }
+                        self.steps = data.numberOfSteps as Int?
+                        self.distance = data.distance as Double?
                     }
                     else {
                         print(error!)
@@ -316,7 +299,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let entity = NSEntityDescription.entity(forEntityName: "ExerciseLoop", in: context)
         let exerciseLoop = NSManagedObject(entity: entity!, insertInto: context)
         
-        // Set values to
+        // Set values to exerciseLoop and insert entity into context
         exerciseLoop.setValue(currentTime, forKeyPath: "time")
         exerciseLoop.setValue(startHours, forKeyPath: "startHours")
         exerciseLoop.setValue(endHours, forKeyPath: "endHours")
