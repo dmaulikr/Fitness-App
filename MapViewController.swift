@@ -114,7 +114,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // Draw current route
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         // Prevent polyline from drawing while map is still loading
-        if (currentTime > 2) {
+        if (currentTime > 3) {
             // Overlay is a polyline
             if (overlay is MKPolyline) {
                 // Draw polyline with renderer as red line
