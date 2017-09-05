@@ -46,7 +46,7 @@ class ResultsViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseLoop")
         
         // Sort descriptors for sorting the table view
-        let sortDescriptorDate = NSSortDescriptor(key: "date", ascending: false,
+        let sortDescriptorDate = NSSortDescriptor(key: "exerciseID", ascending: false,
                                               selector: #selector(NSString.localizedStandardCompare))
 
         fetchRequest.sortDescriptors = [sortDescriptorDate]
