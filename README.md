@@ -1,3 +1,3 @@
 # Fitness-App
 
-iOS fitness app in Progress.
+iOS fitness app.
