@@ -53,9 +53,9 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
 
         
         // Sort descriptors for sorting the table view
-        let sortDescriptorDate = NSSortDescriptor(key: "date", ascending: false,
+        let sortDescriptorByID = NSSortDescriptor(key: "exerciseID", ascending: false,
                                                   selector: #selector(NSString.localizedStandardCompare))
-        fetchRequest.sortDescriptors = [sortDescriptorDate]
+        fetchRequest.sortDescriptors = [sortDescriptorByID]
         
         // try to fetch ExerciseLoop context from data model and store in results array
         do {
@@ -81,6 +81,7 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
             distanceLabel.text = " Distance: " + String(describing: result!.value(forKeyPath: "distance")!) + " miles"
             averageSpeedLabel.text = " Average Speed: " + String(describing: result!.value(forKeyPath: "averageSpeed")!)
             
+            // Store locationPoints locations into the exerciseLocations array
             exerciseLocations = result!.value(forKeyPath: "locationPoints") as! [CLLocation]
             
         } catch {
@@ -110,14 +111,14 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
                 let coordinates = [oldLocationCoord, newLocationCoord]
                 // Set map view region
                 mapView.setRegion(MKCoordinateRegionMake(oldLocationCoord, MKCoordinateSpanMake(0.01, 0.01)), animated: true)
-                print("\(coordinates)")
+//                testing
+//                print("\(coordinates)")
                 // Assign polyline to the coordinates
                 let polyline = MKPolyline(coordinates: coordinates, count: 2)
                 // Add polyline to the map view
                 mapView.add(polyline)
             }
         }
-        
     }
     
     // Draw route on map
@@ -133,7 +134,7 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
         return MKOverlayRenderer(overlay: overlay)
     }
     
-    // Convert timer from Int to String
+    // Convert timer from Int to String in hours minutes and seconds
     func timeToString(time: TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
@@ -151,7 +152,6 @@ class WorkoutDetailViewController: UIViewController, CLLocationManagerDelegate, 
         self.performSegue(withIdentifier: "WorkoutDetailToResults", sender: nil)
     }
    
-    
     // Memory warning
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

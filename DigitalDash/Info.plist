@@ -25,7 +25,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>$(PRODUCT_NAME) is a fitness app tracking location!</string>
 	<key>NSMotionUsageDescription</key>
-	<string>$(PRODUCT_NAME) Step counter tracking your motion!</string>
+	<string>$(PRODUCT_NAME) is a fitness app tracking your motion!</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
         self.performSegue(withIdentifier: "HomeToMap", sender: nil)
     }
     
+    // Segue from Home to Results
     @IBAction func HistoryTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "HomeToResults", sender: nil)
     }

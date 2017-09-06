@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+// ExerciseLoop class
 @objc(ExerciseLoop)
 public class ExerciseLoop: NSManagedObject {
 

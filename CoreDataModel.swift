@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+// Core data model
 class CoreDataModel {
     // MARK: - Core Data stack
     
@@ -41,6 +42,7 @@ class CoreDataModel {
     
     // MARK: - Core Data Saving support
     
+    // Save to the persistant store
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -54,10 +56,4 @@ class CoreDataModel {
             }
         }
     }
-    
-    // MARK: - Core Data Retrieving
-    
-//    @nonobjc func fetchRequest() -> NSFetchRequest<ExerciseLoop> {
-//        return NSFetchRequest<ExerciseLoop>(entityName: "ExerciseLoop");
-//    }
 }

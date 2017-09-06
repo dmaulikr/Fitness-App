@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-
+// ExerciseLoop properties
 extension ExerciseLoop {
 
     @NSManaged public var averageSpeed: String?

@@ -20,10 +20,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // Data model connection
     lazy var coreDataModel = CoreDataModel()
     
-    // Declare array to store entities as NSManagedObjects
+    // Declare results array to store entities as NSManagedObjects
     var results: [NSManagedObject] = []
     
-    // Pedometer
+    // Create Pedometer instance
     let pedometer = CMPedometer()
     
     // IBOutlets
@@ -93,21 +93,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         dateShortString = currentDateShort.string(from: date)
     }
     
-    // Track location
+    // Track location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Loop through locations each time location manager updates
-        for newLocation in locations {
-            // Set old location to the last location in array
-            if let oldLocation = locations.last {
-                // Store coordinates of old and new location
-                let coordinates = [oldLocation.coordinate, newLocation.coordinate]
-                // Assign polyline to the coordinates
-                let polyline = MKPolyline(coordinates: coordinates, count: 2)
-                // Add polyline to the map view
-                mapView.add(polyline)
+        // Prevent location manager from updating while map is still loading
+        if (currentTime > 3) {
+            // Loop through locations
+            for newLocation in locations {
+                // Set old location to the last location in array
+                if let oldLocation = locations.last {
+                    // Store coordinates of old and new location
+                    let coordinates = [oldLocation.coordinate, newLocation.coordinate]
+                    // Assign polyline to the coordinates
+                    let polyline = MKPolyline(coordinates: coordinates, count: 2)
+                    // Add polyline to the map view
+                    mapView.add(polyline)
+                }
+                // Add the new location to the exerciseLocations array
+                exerciseLocations.append(newLocation)
             }
-            // Add the new location to the exerciseLocations array
-            exerciseLocations.append(newLocation)
         }
     }
     
@@ -182,17 +185,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // Convert meters per second to minutes per mile
     func minutesPerMile(pace: Double) -> String {
-        var conversion = 0.0
-        let conversionRatio = 26.8224
+        var metersPerSecondToMinutesPerMile = 0.0
+        let minutesRatio = 26.8224
         if pace != 0 {
-            conversion = conversionRatio / pace
+            metersPerSecondToMinutesPerMile = minutesRatio / pace
         }
-        let minutes = Int(conversion)
-        let seconds = Int(conversion * 60) % 60
+        let minutes = Int(metersPerSecondToMinutesPerMile)
+        let seconds = Int(metersPerSecondToMinutesPerMile * 60) % 60
         return String(format: "%02d:%02d minutes/mile", minutes, seconds)
     }
     
-    // Average speed
+    // Average speed calculator
     func averageSpeedCalc(distance: Double, time: Int) -> Double {
         let averageSpeed = distance / Double(time)
         return averageSpeed
@@ -215,7 +218,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    // Convert timer from Int to String
+    // Convert timer from Int to String in hours minutes and seconds
     func timeToString(time: TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60

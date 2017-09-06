@@ -19,6 +19,7 @@ class ExerciseIDViewCell: UITableViewCell {
         // Initialization code
     }
     
+    // Set selected for a table view cell
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

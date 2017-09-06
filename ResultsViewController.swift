@@ -28,7 +28,6 @@ class ResultsViewController: UITableViewController {
     // Index path
     var path: IndexPath? = nil
     
-    
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,20 +45,21 @@ class ResultsViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseLoop")
         
         // Sort descriptors for sorting the table view
-        let sortDescriptorDate = NSSortDescriptor(key: "exerciseID", ascending: false,
+        let sortDescriptorByID = NSSortDescriptor(key: "exerciseID", ascending: false,
                                               selector: #selector(NSString.localizedStandardCompare))
 
-        fetchRequest.sortDescriptors = [sortDescriptorDate]
+        fetchRequest.sortDescriptors = [sortDescriptorByID]
         
         // Store results from fetch request in results array
         do {
             results = try context.fetch(fetchRequest)
-            print("number of results: \(results.count)")
-            
-            for result in results as! [ExerciseLoop] {
-                print("\(result.exerciseID)")
-                print("\(result.time)")
-            }
+//            testing
+//            print("number of results: \(results.count)")
+//            
+//            for result in results as! [ExerciseLoop] {
+//                print("\(result.exerciseID)")
+//                print("\(result.time)")
+//            }
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }
@@ -67,6 +67,8 @@ class ResultsViewController: UITableViewController {
         // Reload table view data
         ResultsTableView.reloadData()
     }
+    
+    // Home tapped
     @IBAction func HomeTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "ResultsToHome", sender: nil)
     }
@@ -112,7 +114,7 @@ class ResultsViewController: UITableViewController {
         return cell!
     }
     
-    // Deleting a workout
+    // Can delete a workout
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -156,19 +158,20 @@ class ResultsViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseLoop")
         
         // Sort descriptors for sorting the table view
-        let sortDescriptorDate = NSSortDescriptor(key: "date", ascending: false,
+        let sortDescriptorByID = NSSortDescriptor(key: "exerciseID", ascending: false,
                                                   selector: #selector(NSString.localizedStandardCompare))
-        fetchRequest.sortDescriptors = [sortDescriptorDate]
+        fetchRequest.sortDescriptors = [sortDescriptorByID]
 
         // try to fetch ExerciseLoop context from data model and store in results array
         do {
             results = try context.fetch(fetchRequest) as! [ExerciseLoop]
-            print("number of results: \(results.count)")
-            
-            for result in results as! [ExerciseLoop] {
-                print("\(result.exerciseID)")
-                print("\(result.time)")
-            }
+//            testing
+//            print("number of results: \(results.count)")
+//            
+//            for result in results as! [ExerciseLoop] {
+//                print("\(result.exerciseID)")
+//                print("\(result.time)")
+//            }
         } catch {
             fatalError("Failed to fetch exercise loops: \(error)")
         }
@@ -204,16 +207,17 @@ class ResultsViewController: UITableViewController {
         path = nil
     }
     
+    // Row selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         resultsToWorkoutDetail = true
         rowClicked = indexPath.row
         ResultsTableView.deselectRow(at: indexPath, animated: true)
         
-        print("Selected row: \(rowClicked!)")
+//        testing
+//        print("Selected row: \(rowClicked!)")
         
         let workoutDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ResultsToWorkoutDetail") as! WorkoutDetailViewController
         
         self.navigationController?.pushViewController(workoutDetailViewController, animated: true)
-        
     }
 }
